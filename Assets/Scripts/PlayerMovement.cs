@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Shoot Mode")]
     public float accShootMode = 10.0f;
     public float speedShootMode = 5.0f;
+    public float turnSpeed = 10.0f;
     public GameObject projectilePrefab;
     public float projectileSpeed = 10.0f;
     public float projectileTime = 5.0f;
@@ -122,7 +123,11 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 pointOfIntersection = ray.GetPoint(rayDistance);
             Vector3 directionToLook = (pointOfIntersection - transform.position).normalized;
-            transform.rotation = Quaternion.LookRotation(new Vector3(directionToLook.x, 0, directionToLook.z));
+            Quaternion lookDirection = Quaternion.LookRotation(new Vector3(directionToLook.x, 0, directionToLook.z));
+            Vector3 turnDirection = (lookDirection * Quaternion.Inverse(transform.rotation)).eulerAngles;
+            turnDirection.y -= turnDirection.y > 180 ? 360 : 0;
+            
+            rb.angularVelocity = turnDirection * turnSpeed * Time.deltaTime;
         }
     }
     
@@ -176,22 +181,37 @@ public class PlayerMovement : MonoBehaviour
             rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         }
 
+        playerAnimator.SetTrigger(isBallMode ? "Open" : "Close");
+
         while (transformingLerp < 1)
         {
             transformingLerp += Time.fixedDeltaTime * transformSpeed;
-            rb.velocity = Vector3.Lerp(velocityBefore, Vector3.zero, transformingLerp);
 
             foreach (ChainIKConstraint constraint in legConstraints)
             {
                 constraint.weight = isBallMode ? transformingLerp : 1 - transformingLerp;
             }
 
-            if (isBallMode) transform.rotation = Quaternion.Lerp(rotationBefore, rotationAfter, transformingLerp);
+            if (isBallMode)
+            {
+                transform.rotation = Quaternion.Lerp(rotationBefore, rotationAfter, transformingLerp);
+                rb.velocity = Vector3.Lerp(velocityBefore, Vector3.zero, transformingLerp);
+            }
             
             yield return new WaitForFixedUpdate();
         }
 
-        playerAnimator.SetTrigger(isBallMode ? "Open" : "Close");
+        foreach (ChainIKConstraint constraint in legConstraints)
+        {
+            constraint.weight = isBallMode ? 1 : 0;
+        }
+
+        if (isBallMode)
+        {
+            transform.rotation = rotationAfter;
+            rb.angularVelocity = Vector3.zero;
+            rb.velocity = Vector3.zero;
+        }
 
         yield return new WaitUntil(() => (isBallMode && playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Opened"))
                                       || (!isBallMode && playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Ball")));

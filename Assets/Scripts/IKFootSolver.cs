@@ -54,6 +54,9 @@ public class IKFootSolver : MonoBehaviour
         {
             lerp = 0;
             oldPosition = newPosition;
+
+            // TODO: also consider angular velocity into movement calculation
+
             Vector3 direction = referenceRB.velocity.sqrMagnitude > 0 ? referenceRB.velocity.normalized : (ikBoneTransform.position - targetPosition).normalized;
             targetPosition = direction * distanceToMove + ikBoneTransform.position;
         }
