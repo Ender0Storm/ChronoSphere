@@ -1,12 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public bool isBallMode = false;
+    [Header("General Information")]
+    public Animator playerAnimator;
+    public List<ChainIKConstraint> legConstraints;
+    [Min(0.1f)]
+    public float transformSpeed;
     
     //Shoot Mode
+    [Header("Shoot Mode")]
+    public float accShootMode = 10.0f;
     public float speedShootMode = 5.0f;
     public GameObject projectilePrefab;
     public float projectileSpeed = 10.0f;
@@ -16,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     //public AudioSource gunSound;
     
     //Ball Mode
+    [Header("Ball Mode")]
     public float speedBallMode = 10f;
     public float maxSpeed = 20f;
     public float dashSpeed = 50f;
@@ -25,65 +33,85 @@ public class PlayerMovement : MonoBehaviour
     
 
     private Rigidbody rb;
+    private CapsuleCollider shootCollider;
+    private SphereCollider ballCollider;
+    private float transformingLerp;
+
+    private bool isBallMode;
     private bool isDashing;
-    private bool canDash = true;
+    private bool isTransforming;
+    private bool canDash;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        shootCollider = GetComponent<CapsuleCollider>();
+        ballCollider = GetComponent<SphereCollider>();
+        transformingLerp = 1;
+        isBallMode = false;
+        canDash = true;
+    }
+
     void FixedUpdate()
     {
-        if (!isBallMode)
+        if (!isTransforming)
         {
-            MovePlayerShootMode();
-            RotateAtCursor(); 
-        }
-        
-        if (isBallMode)
-        {
-            float moveHorizontal = Input.GetAxis("Horizontal");
-            float moveVertical = Input.GetAxis("Vertical");
-
-            Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
-
-            //Met une limite de vitesse quand on est pas entrain de dash
-            if (!isDashing)
-            {
-                rb.AddForce(movement * speedBallMode);
-                rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
-            }
-        }
-        
-    }
-    
-    void Update()
-    {
-        if (!isBallMode)
-        {
-            if (Input.GetButtonDown("Fire1"))
-            {
-                FireProjectile();
-            } 
-        }
-
-        if (isBallMode)
-        {
-            if (Input.GetKeyDown(KeyCode.Space) && canDash && !isDashing)
+            if (isBallMode)
             {
                 float moveHorizontal = Input.GetAxis("Horizontal");
                 float moveVertical = Input.GetAxis("Vertical");
 
                 Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
-                StartCoroutine(Dash(movement));
+
+                //Met une limite de vitesse quand on est pas entrain de dash
+                if (!isDashing)
+                {
+                    rb.AddForce(movement * speedBallMode);
+                    rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+                }
+            }
+            else
+            {
+                MovePlayerShootMode();
+                RotateAtCursor(); 
             }
         }
-
     }
+    
+    void Update()
+    {
+        if (!isTransforming)
+        {
+            if (isBallMode)
+            {
+                if (Input.GetKeyDown(KeyCode.Space) && canDash && !isDashing)
+                {
+                    float moveHorizontal = Input.GetAxis("Horizontal");
+                    float moveVertical = Input.GetAxis("Vertical");
 
+                    Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
+                    StartCoroutine(Dash(movement));
+                }
+            }
+            else
+            {
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    FireProjectile();
+                } 
+            }
+        }
+    }
 
     void MovePlayerShootMode()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
+        
+        Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
 
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-        transform.position += movement * speedShootMode * Time.deltaTime;
+        rb.AddForce(movement * accShootMode);
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, speedShootMode);
     }
     
     void RotateAtCursor()
@@ -113,31 +141,13 @@ public class PlayerMovement : MonoBehaviour
         //gunSound.Play();
     }
     
-    
-    //@Todo Faire le changement de mode
     //Serait appelé par le game manager
     public void ChangeMode()
     {
-        //@TODO Il faut mettre le code pour l'animation.
-        //Permet de passer du mode tire au mode boule
-        if (!isBallMode)
+        if (!isTransforming)
         {
-            isBallMode = true;
-            rb = GetComponent<Rigidbody>();
-            float moveHorizontal = Input.GetAxis("Horizontal");
-            float moveVertical = Input.GetAxis("Vertical");
-
-            Vector3 direction = new Vector3(moveHorizontal, 0, moveVertical);
-        
-            //StartSpeed permet d'avoir un élan quand on passe du mode tir au mode boule
-            rb.AddForce(direction * startSpeed, ForceMode.Impulse);
+            StartCoroutine(Transform());
         }
-
-        else
-        {
-            isBallMode = false;
-        }
-
     }
     
     IEnumerator Dash(Vector3 direction)
@@ -151,6 +161,60 @@ public class PlayerMovement : MonoBehaviour
         //Ajout d'un délais avant de pouvoir recommencer le dash
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
+    }
+
+    IEnumerator Transform()
+    {
+        transformingLerp = 0;
+        isTransforming = true;
+        Vector3 velocityBefore = rb.velocity;
+        Quaternion rotationBefore = transform.rotation;
+        Quaternion rotationAfter = Quaternion.Euler(0, rotationBefore.eulerAngles.y, 0);
+
+        if (isBallMode) {
+            rb.angularVelocity = Vector3.zero;
+            rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        }
+
+        while (transformingLerp < 1)
+        {
+            transformingLerp += Time.fixedDeltaTime * transformSpeed;
+            rb.velocity = Vector3.Lerp(velocityBefore, Vector3.zero, transformingLerp);
+
+            foreach (ChainIKConstraint constraint in legConstraints)
+            {
+                constraint.weight = isBallMode ? transformingLerp : 1 - transformingLerp;
+            }
+
+            if (isBallMode) transform.rotation = Quaternion.Lerp(rotationBefore, rotationAfter, transformingLerp);
+            
+            yield return new WaitForFixedUpdate();
+        }
+
+        playerAnimator.SetTrigger(isBallMode ? "Open" : "Close");
+
+        yield return new WaitUntil(() => (isBallMode && playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Opened"))
+                                      || (!isBallMode && playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Ball")));
+
+        isBallMode = !isBallMode;
+
+        ((Collider)(isBallMode ? ballCollider : shootCollider)).enabled = true;
+        ((Collider)(isBallMode ? shootCollider : ballCollider)).enabled = false;
+
+        if (isBallMode)
+        {
+            rb.constraints = RigidbodyConstraints.None;
+
+            float moveHorizontal = Input.GetAxis("Horizontal");
+            float moveVertical = Input.GetAxis("Vertical");
+            
+            Vector3 direction = new Vector3(moveHorizontal, 0, moveVertical);
+
+            rb.AddForce(direction * startSpeed, ForceMode.Impulse);
+        }
+
+        isTransforming = false;
+        yield return null;
     }
 
 }
