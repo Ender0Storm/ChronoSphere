@@ -78,7 +78,7 @@ public class IKFootSolver : MonoBehaviour
             footPosition.y += Mathf.Sin(lerp * Mathf.PI) * walkHeight;
 
             currentPosition = footPosition;
-            lerp += Time.deltaTime * walkSpeed * referenceRB.velocity.magnitude;
+            lerp += Time.deltaTime * walkSpeed * (referenceRB.velocity.magnitude + 4*referenceRB.angularVelocity.magnitude);
         }
         else
         {
