@@ -367,14 +367,15 @@ MonoBehaviour:
   - {fileID: 1049376737547186435}
   transformSpeed: 5
   accShootMode: 50
-  speedShootMode: 3.5
+  speedShootMode: 4
   turnSpeed: 8
   projectilePrefab: {fileID: 4170493040866861988, guid: af1eb3bb3d542124c9a7b3ef8721a2b6, type: 3}
-  projectileSpeed: 10
+  projectileSpeed: 40
   projectileTime: 5
   aimAdjustment: 0.5
   projectileHeight: 0.6
   projectileSpawnDistance: 2
+  shotDelay: 0.5
   speedBallMode: 10
   maxSpeed: 20
   dashSpeed: 50

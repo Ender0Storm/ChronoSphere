@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     public float aimAdjustment = 0.5f;
     public float projectileHeight = 0.5f;
     public float projectileSpawnDistance = 2.0f;
+    public float shotDelay = 0.5f;
+    private float timeSinceLastShot = 0.0f;
     //public AudioSource gunSound;
     
     //Ball Mode
@@ -97,9 +99,10 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                if (Input.GetButtonDown("Fire1"))
+                if (Input.GetButtonDown("Fire1") && Time.time > timeSinceLastShot + shotDelay)
                 {
                     FireProjectile();
+                    timeSinceLastShot = Time.time; 
                 } 
             }
         }
