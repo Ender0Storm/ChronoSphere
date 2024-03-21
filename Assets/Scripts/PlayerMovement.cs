@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public float projectileTime = 5.0f;
     public float aimAdjustment = 0.5f;
     public float projectileHeight = 0.5f;
+    public float projectileSpawnDistance = 2.0f;
     //public AudioSource gunSound;
     
     //Ball Mode
@@ -135,7 +136,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //Crée le projectile à l'avant du joueur et à la bonne hauteur
         Vector3 shootDirection = transform.forward;
-        Vector3 spawnPosition = transform.position + shootDirection;
+        Vector3 spawnPosition = transform.position + shootDirection * projectileSpawnDistance;
         spawnPosition.y += projectileHeight;
 
         GameObject projectile = Instantiate(projectilePrefab, spawnPosition, Quaternion.identity);
