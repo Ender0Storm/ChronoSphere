@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //Permet de changer de mode
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             playerMovementScript.ChangeMode();
         }

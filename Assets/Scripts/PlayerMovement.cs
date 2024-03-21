@@ -85,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (isBallMode)
             {
-                if (Input.GetKeyDown(KeyCode.Space) && canDash && !isDashing)
+                if (Input.GetButtonDown("Dash") && canDash && !isDashing)
                 {
                     float moveHorizontal = Input.GetAxis("Horizontal");
                     float moveVertical = Input.GetAxis("Vertical");
@@ -236,5 +236,5 @@ public class PlayerMovement : MonoBehaviour
         isTransforming = false;
         yield return null;
     }
-
+    
 }
