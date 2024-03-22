@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     public List<ChainIKConstraint> legConstraints;
     [Min(0.1f)]
     public float transformSpeed;
+    public bool isOnFloor;
+    
     
     //Shoot Mode
     [Header("Shoot Mode")]
@@ -34,8 +36,10 @@ public class PlayerMovement : MonoBehaviour
     public float dashDuration = 0.2f;
     public float dashCooldown = 1f;
     public float startSpeed = 5f;
+    public float jumpForce = 10f;
+    public float jumpPadForce = 15f;
+    public float speedBoost = 30f;
     
-
     private Rigidbody rb;
     private CapsuleCollider shootCollider;
     private SphereCollider ballCollider;
@@ -95,6 +99,11 @@ public class PlayerMovement : MonoBehaviour
 
                     Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
                     StartCoroutine(Dash(movement));
+                }
+                else if (Input.GetButtonDown("Jump") && isOnFloor)
+                {
+                    rb.velocity += (Vector3.up * jumpForce);
+                    isOnFloor = false;
                 }
             }
             else
@@ -241,4 +250,25 @@ public class PlayerMovement : MonoBehaviour
         yield return null;
     }
     
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("JumpPad") && isBallMode)
+        {
+            rb.velocity += (Vector3.up * jumpPadForce);
+        }
+    }
+    
+    private void OnCollisionStay(Collision other)
+    {
+        if (other.gameObject.CompareTag("Floor")) 
+        {
+            isOnFloor = true;
+        }
+    
+        else if (other.gameObject.CompareTag("BoostPad") && isBallMode)
+        {
+            Vector3 direction = other.gameObject.transform.forward;
+            rb.velocity = (direction * speedBoost);
+        }
+    }
 }
