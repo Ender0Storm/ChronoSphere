@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     public float projectileSpawnDistance = 2.0f;
     public float shotDelay = 0.5f;
     private float timeSinceLastShot = 0.0f;
-    //public AudioSource gunSound;
+    public AudioSource gunSound;
     
     //Ball Mode
     [Header("Ball Mode")]
@@ -156,7 +156,7 @@ public class PlayerMovement : MonoBehaviour
         projectileRigidbody.useGravity = false;
         projectileRigidbody.AddForce(shootDirection * projectileSpeed, ForceMode.VelocityChange);
         Destroy(projectile, projectileTime);
-        //gunSound.Play();
+        gunSound.Play();
     }
     
     //Serait appelé par le game manager
