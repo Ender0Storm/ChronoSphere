@@ -45,10 +45,14 @@ public class PlayerMovement : MonoBehaviour
     private SphereCollider ballCollider;
     private float transformingLerp;
 
-    private bool isBallMode;
+    public bool isBallMode;
     private bool isDashing;
     private bool isTransforming;
     private bool canDash;
+
+
+    public GameManager gameManager;
+    private bool gameIsPaused;
 
     void Start()
     {
@@ -88,7 +92,9 @@ public class PlayerMovement : MonoBehaviour
     
     void Update()
     {
-        if (!isTransforming)
+        gameIsPaused = gameManager.gameIsPaused;
+        
+        if (!isTransforming&& !gameIsPaused)
         {
             if (isBallMode)
             {

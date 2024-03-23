@@ -291,6 +291,8 @@ MonoBehaviour:
   jumpForce: 10
   jumpPadForce: 15
   speedBoost: 30
+  isBallMode: 0
+  gameManager: {fileID: 602063096176645023, guid: 6779ac956bbce534b9b270775c3d3fb5, type: 3}
 --- !u!1 &4717600589838660039
 GameObject:
   m_ObjectHideFlags: 0
