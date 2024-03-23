@@ -6,7 +6,7 @@ public class Collapsing : MonoBehaviour
 {
     private Rigidbody rb;
     private Renderer rend;
-    private BoxCollider collider;
+    private BoxCollider boxCollider;
     private bool isCollapsing = false;
     private Vector3 _startPos;
     
@@ -15,7 +15,7 @@ public class Collapsing : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rend = GetComponent<Renderer>();
-        collider = GetComponent<BoxCollider>();
+        boxCollider = GetComponent<BoxCollider>();
         _startPos = transform.position;
     }
 
@@ -49,24 +49,26 @@ public class Collapsing : MonoBehaviour
     {
         rb.useGravity = true;
         rb.isKinematic = false;
+        boxCollider.enabled = false;
     }
 
     private void GravityDisabled()
     {
         rb.useGravity = false;
         rb.isKinematic = true;
+
     }
     
     private void ActivateCollider()
     {
         rend.enabled = true;
-        collider.enabled = true;
+        boxCollider.enabled = true;
     }
     
     private void DisactivateCollider()
     {
         rend.enabled = false;
-        collider.enabled = false;
+
     }
     
     IEnumerator Collapse()
