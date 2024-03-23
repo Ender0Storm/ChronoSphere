@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     public float projectileSpawnDistance = 2.0f;
     public float shotDelay = 0.5f;
     private float timeSinceLastShot = 0.0f;
-    //public AudioSource gunSound;
+    public AudioSource gunSound;
     
     //Ball Mode
     [Header("Ball Mode")]
@@ -45,10 +45,14 @@ public class PlayerMovement : MonoBehaviour
     private SphereCollider ballCollider;
     private float transformingLerp;
 
-    private bool isBallMode;
+    public bool isBallMode;
     private bool isDashing;
     private bool isTransforming;
     private bool canDash;
+
+
+    public GameManager gameManager;
+    private bool gameIsPaused;
 
     void Start()
     {
@@ -88,7 +92,9 @@ public class PlayerMovement : MonoBehaviour
     
     void Update()
     {
-        if (!isTransforming)
+        gameIsPaused = gameManager.gameIsPaused;
+        
+        if (!isTransforming&& !gameIsPaused)
         {
             if (isBallMode)
             {
@@ -156,7 +162,7 @@ public class PlayerMovement : MonoBehaviour
         projectileRigidbody.useGravity = false;
         projectileRigidbody.AddForce(shootDirection * projectileSpeed, ForceMode.VelocityChange);
         Destroy(projectile, projectileTime);
-        //gunSound.Play();
+        gunSound.Play();
     }
     
     //Serait appelé par le game manager
