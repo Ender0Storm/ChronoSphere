@@ -157,6 +157,7 @@ GameObject:
   - component: {fileID: 1707804243987354324}
   - component: {fileID: 225541124557420055}
   - component: {fileID: 4700500137848425926}
+  - component: {fileID: 1152908944378988548}
   m_Layer: 7
   m_Name: PlayerCharacter
   m_TagString: Player
@@ -298,6 +299,21 @@ MonoBehaviour:
   jumpPadForce: 15
   speedBoost: 30
   isBallMode: 0
+  gameManager: {fileID: 602063096176645023, guid: 6779ac956bbce534b9b270775c3d3fb5, type: 3}
+--- !u!114 &1152908944378988548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884993563295970383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd7852741ecae745a0398026cfbd23a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 1
+  damageProjectile: 1
   gameManager: {fileID: 602063096176645023, guid: 6779ac956bbce534b9b270775c3d3fb5, type: 3}
 --- !u!1 &4672540086996189196
 GameObject:

@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     
     [HideInInspector]
     public bool gameIsPaused = false;
+    public bool playerIsDead = false;
     
     private void Awake()
     {
@@ -34,6 +35,10 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (playerIsDead)
+        {
+            Pause();
+        }
         isBall = playerMovementScript.isBallMode;
         //Permet de changer de mode
         if (Input.GetKeyDown(KeyCode.F) && !gameIsPaused)
@@ -106,5 +111,14 @@ public class GameManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void GameOver()
+    {
+        if (playerIsDead == false)
+        {
+            playerIsDead = true;
+        }
+
     }
 }
