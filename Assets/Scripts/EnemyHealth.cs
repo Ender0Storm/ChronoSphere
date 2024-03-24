@@ -17,10 +17,12 @@ public class EnemyHealth : MonoBehaviour
     //Pas nécessaire dans le projet final mais le fun a garder pour le premier jouable
     public GameObject head;
 
+    private string PLAYER_TAG = "Player";
+
     private void Start()
     {
         health = maxHealth;
-        rend = GetComponent<Renderer>();
+        rend = GetComponentInChildren<Renderer>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -28,9 +30,11 @@ public class EnemyHealth : MonoBehaviour
         if (collision.gameObject.GetComponent<Projectile>() != null)
         {
             hitSound.Play();
-            health-=damageProjectile;
+            health -= damageProjectile;
+
+            GetComponentInChildren<EnemyAI>().SetCurrentTarget(GameObject.FindGameObjectWithTag(PLAYER_TAG));
         }
-        else if (collision.gameObject.tag == "Player" && collision.relativeVelocity.magnitude > minSpeedForDamage)
+        else if (collision.gameObject.tag == PLAYER_TAG && collision.relativeVelocity.magnitude > minSpeedForDamage)
         {
             hitSound.Play();
             health -= damageCollision;
@@ -48,7 +52,7 @@ public class EnemyHealth : MonoBehaviour
 
     IEnumerator DestroyAfterSound()
     {
-        GetComponent<Renderer>().enabled = false;
+        GetComponentInChildren<Renderer>().enabled = false;
         hitSound.Play();
         yield return new WaitForSeconds(hitSound.clip.length);
         Destroy(gameObject);
