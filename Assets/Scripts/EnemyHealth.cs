@@ -67,6 +67,7 @@ public class EnemyHealth : MonoBehaviour
             {
                 headRb = head.AddComponent<Rigidbody>();
             }
+            head.GetComponent<BoxCollider>().enabled = true;
             head.transform.parent = null;
             headRb.isKinematic = false;
             headRb.mass = 0.5f;
