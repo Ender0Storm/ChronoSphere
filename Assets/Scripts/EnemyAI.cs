@@ -70,7 +70,7 @@ public class EnemyAI : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRange, playerLayer);
         if (colliders.Length > 0 && !Physics.Raycast(transform.position, colliders[0].transform.position - transform.position, detectionRange, groundLayer))
         {
-            currentTarget = colliders[0].gameObject;
+            SetCurrentTarget(colliders[0].gameObject);
         }
     }
 
@@ -114,8 +114,14 @@ public class EnemyAI : MonoBehaviour
             untargetTimer += Time.deltaTime;
             if (untargetTimer > untargetDelay)
             {
-                currentTarget = null;
+                SetCurrentTarget(null);
             }
         }
+    }
+
+    public void SetCurrentTarget(GameObject target)
+    {
+        currentTarget = target;
+        untargetTimer = 0;
     }
 }
