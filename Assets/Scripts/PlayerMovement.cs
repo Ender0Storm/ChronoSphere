@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -306,7 +307,16 @@ public class PlayerMovement : MonoBehaviour
         isTransforming = false;
         yield return null;
     }
-    
+
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.CompareTag("Floor")) 
+        {
+            isOnFloor = false;
+        }
+        
+    }
+
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("JumpPad") && isBallMode)
