@@ -2985,7 +2985,7 @@ PrefabInstance:
       objectReference: {fileID: 2067882043}
     - target: {fileID: 4700500137848425926, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
       propertyPath: projectileSpawnDistance
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7403098292049066992, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
       propertyPath: m_LocalPosition.x

@@ -286,7 +286,7 @@ MonoBehaviour:
   projectileTime: 5
   aimAdjustment: 0.5
   projectileHeight: 0.6
-  projectileSpawnDistance: 2
+  projectileSpawnDistance: 0
   shotDelay: 0.5
   speedBallMode: 10
   maxSpeed: 20
