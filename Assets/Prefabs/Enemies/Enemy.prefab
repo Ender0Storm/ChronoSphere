@@ -280,19 +280,19 @@ MonoBehaviour:
   untargetRange: 20
   untargetDelay: 2
   moveSpeed: 0
-  turnSpeed: 3
-  shootRate: 2
+  turnSpeed: 6
+  shootRate: 1
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 72
   projectilePrefab: {fileID: 4170493040866861988, guid: af1eb3bb3d542124c9a7b3ef8721a2b6, type: 3}
   projectileSpawn: {fileID: 7585711878089078344}
   projectileSound: {fileID: 836682684800992100}
-  projectileSpeed: 1
-  projectileDuration: 5
+  projectileSpeed: 20
+  projectileDuration: 10
 --- !u!82 &836682684800992100
 AudioSource:
   m_ObjectHideFlags: 0
@@ -305,7 +305,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4d8416eb341c541498dc968f56d54667, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.38
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -542,7 +542,7 @@ Transform:
   m_GameObject: {fileID: 8240577623224843226}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.13, z: 0}
+  m_LocalPosition: {x: 0, y: 1.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

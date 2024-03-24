@@ -44,7 +44,7 @@ public class EnemyAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        shootTimer = 0;
+        shootTimer = shootRate;
         untargetTimer = 0;
     }
 
@@ -62,13 +62,13 @@ public class EnemyAI : MonoBehaviour
             CheckTargetAvailability();
         }
 
-        shootTimer += Time.deltaTime;
+        if (shootTimer < shootRate) shootTimer += Time.deltaTime;
     }
 
     void FindTarget()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRange, playerLayer);
-        if (colliders.Length > 0 && !Physics.Raycast(transform.position, colliders[0].transform.position, detectionRange, groundLayer))
+        if (colliders.Length > 0 && !Physics.Raycast(transform.position, colliders[0].transform.position - transform.position, detectionRange, groundLayer))
         {
             currentTarget = colliders[0].gameObject;
         }
@@ -82,9 +82,10 @@ public class EnemyAI : MonoBehaviour
 
     void ShootTargetIfAble()
     {
-        if (shootTimer <= 0 && Quaternion.Angle(Quaternion.LookRotation(currentTarget.transform.position - transform.position), transform.rotation) < 5)
+        if (shootTimer >= shootRate && Quaternion.Angle(Quaternion.LookRotation(currentTarget.transform.position - transform.position), transform.rotation) < 5)
         {
             FireProjectile();
+            shootTimer = 0;
         }
     }
 
