@@ -7,6 +7,9 @@ public class Projectile : MonoBehaviour
     //Détruit le projectile quand il rentre en contact avec un objet
     private void OnCollisionEnter(Collision collision)
     {
-        Destroy(gameObject);
+        if (collision.gameObject.tag != "Player")
+        {
+            Destroy(gameObject);
+        }
     }
 }

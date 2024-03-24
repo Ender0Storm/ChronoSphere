@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource walkingSound;
     public AudioSource rollingSound;
     public AudioSource gunSound;
+    public AudioSource transformSound;
     private float minPitch = -1f; 
     private float maxPitch = 1.0f; 
     
@@ -104,8 +105,8 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
-                                float speed = this.GetComponent<Rigidbody>().velocity.magnitude;
-                        rollingSound.pitch = Mathf.Clamp(speed / maxSpeed, minPitch, maxPitch);
+        float speed = this.GetComponent<Rigidbody>().velocity.magnitude;
+        rollingSound.pitch = Mathf.Clamp(speed / maxSpeed, minPitch, maxPitch);
         gameIsPaused = gameManager.gameIsPaused;
         
         if (!isTransforming&& !gameIsPaused)
@@ -217,6 +218,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!isTransforming)
         {
+            rollingSound.Stop();
+            walkingSound.Stop();
             StartCoroutine(Transform());
         }
     }
@@ -236,10 +239,9 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator Transform()
     {
-        rollingSound.Stop();
-        walkingSound.Stop();
         transformingLerp = 0;
         isTransforming = true;
+        transformSound.Play();
         Vector3 velocityBefore = rb.velocity;
         Quaternion rotationBefore = transform.rotation;
         Quaternion rotationAfter = Quaternion.Euler(0, rotationBefore.eulerAngles.y, 0);
