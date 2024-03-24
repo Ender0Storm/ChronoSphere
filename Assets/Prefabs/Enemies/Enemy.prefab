@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 836682684800992100}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Player
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -288,7 +288,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 72
-  projectilePrefab: {fileID: 4170493040866861988, guid: af1eb3bb3d542124c9a7b3ef8721a2b6, type: 3}
+  projectilePrefab: {fileID: 4170493040866861988, guid: d3435386535ae2a4381cc3fb13f037a6, type: 3}
   projectileSpawn: {fileID: 7585711878089078344}
   projectileSound: {fileID: 836682684800992100}
   projectileSpeed: 20
