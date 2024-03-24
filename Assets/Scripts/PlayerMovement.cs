@@ -11,6 +11,13 @@ public class PlayerMovement : MonoBehaviour
     [Min(0.1f)]
     public float transformSpeed;
     public bool isOnFloor;
+
+    [Header("VFX")]
+    public AudioSource walkingSound;
+    public AudioSource rollingSound;
+    public AudioSource gunSound;
+    private float minPitch = -1f; 
+    private float maxPitch = 1.0f; 
     
     
     //Shoot Mode
@@ -26,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     public float projectileSpawnDistance = 2.0f;
     public float shotDelay = 0.5f;
     private float timeSinceLastShot = 0.0f;
-    public AudioSource gunSound;
+
     
     //Ball Mode
     [Header("Ball Mode")]
@@ -53,6 +60,10 @@ public class PlayerMovement : MonoBehaviour
 
     public GameManager gameManager;
     private bool gameIsPaused;
+
+
+
+
 
     void Start()
     {
@@ -92,6 +103,9 @@ public class PlayerMovement : MonoBehaviour
     
     void Update()
     {
+
+                                float speed = this.GetComponent<Rigidbody>().velocity.magnitude;
+                        rollingSound.pitch = Mathf.Clamp(speed / maxSpeed, minPitch, maxPitch);
         gameIsPaused = gameManager.gameIsPaused;
         
         if (!isTransforming&& !gameIsPaused)
@@ -111,6 +125,23 @@ public class PlayerMovement : MonoBehaviour
                     rb.velocity += (Vector3.up * jumpForce);
                     isOnFloor = false;
                 }
+
+                if (this.GetComponent<Rigidbody>().velocity.magnitude > 2f && isOnFloor)
+                {
+                    if (!rollingSound.isPlaying)
+                    {
+                        
+                        rollingSound.Play();
+
+                    }
+                }
+                else
+                {
+                    if (rollingSound.isPlaying)
+                    {
+                        rollingSound.Stop();
+                    }
+                }
             }
             else
             {
@@ -119,8 +150,24 @@ public class PlayerMovement : MonoBehaviour
                     FireProjectile();
                     timeSinceLastShot = Time.time; 
                 } 
+
+                if (this.GetComponent<Rigidbody>().velocity.magnitude > 2f && isOnFloor)
+                {
+                    if (!walkingSound.isPlaying)
+                    {
+                        walkingSound.Play();
+                    }
+                }
+                else
+                {
+                    if (walkingSound.isPlaying)
+                    {
+                        walkingSound.Stop();
+                    }
+                }
             }
         }
+        
     }
 
     void MovePlayerShootMode()
@@ -189,6 +236,8 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator Transform()
     {
+        rollingSound.Stop();
+        walkingSound.Stop();
         transformingLerp = 0;
         isTransforming = true;
         Vector3 velocityBefore = rb.velocity;
