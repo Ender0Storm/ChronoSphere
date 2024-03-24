@@ -2647,6 +2647,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc6e1b8db6a46d243a80ba2a5452b4f2, type: 3}
+--- !u!82 &2067882043 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3953866139535600825, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
+  m_PrefabInstance: {fileID: 3516961995881561821}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2070485727
 GameObject:
   m_ObjectHideFlags: 0
@@ -2958,6 +2963,14 @@ PrefabInstance:
       propertyPath: m_Volume
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 3953866139535600825, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
+      propertyPath: m_Pitch
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3953866139535600825, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
+      propertyPath: m_Volume
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 4700500137848425926, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
       propertyPath: shotDelay
       value: 0.3
@@ -2966,6 +2979,10 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 157545012}
+    - target: {fileID: 4700500137848425926, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
+      propertyPath: transformSound
+      value: 
+      objectReference: {fileID: 2067882043}
     - target: {fileID: 4700500137848425926, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
       propertyPath: projectileSpawnDistance
       value: 2
