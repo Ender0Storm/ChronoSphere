@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.SocialPlatforms;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -12,8 +14,6 @@ public class EnemyAI : MonoBehaviour
     private float untargetRange;
     [SerializeField]
     private float untargetDelay;
-    [SerializeField]
-    private float moveSpeed;
     [SerializeField]
     private float turnSpeed;
     [SerializeField]
@@ -40,12 +40,16 @@ public class EnemyAI : MonoBehaviour
     private GameObject currentTarget;
     private float shootTimer;
     private float untargetTimer;
+    private NavMeshAgent navigationAgent;
+    private bool targetVisible;
 
     // Start is called before the first frame update
     void Start()
     {
         shootTimer = shootRate;
         untargetTimer = 0;
+        navigationAgent = transform.parent.GetComponent<NavMeshAgent>();
+        targetVisible = false;
     }
 
     // Update is called once per frame
@@ -57,6 +61,7 @@ public class EnemyAI : MonoBehaviour
         }
         else
         {
+            UpdateVisibility();
             AimTowardTarget(currentTarget.transform.position);
             ShootTargetIfAble();
             CheckTargetAvailability();
@@ -74,6 +79,12 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    void UpdateVisibility()
+    {
+        Vector3 lookVector = currentTarget.transform.position - transform.position;
+        targetVisible = !Physics.Raycast(transform.position, lookVector, lookVector.magnitude, groundLayer);
+    }
+
     void AimTowardTarget(Vector3 target)
     {
         Quaternion targetRotation = Quaternion.LookRotation(target - transform.position);
@@ -82,7 +93,8 @@ public class EnemyAI : MonoBehaviour
 
     void ShootTargetIfAble()
     {
-        if (shootTimer >= shootRate && Quaternion.Angle(Quaternion.LookRotation(currentTarget.transform.position - transform.position), transform.rotation) < 5)
+        if (targetVisible && shootTimer >= shootRate
+            && Quaternion.Angle(Quaternion.LookRotation(currentTarget.transform.position - transform.position), transform.rotation) < 5)
         {
             FireProjectile();
             shootTimer = 0;
@@ -105,16 +117,23 @@ public class EnemyAI : MonoBehaviour
 
     void CheckTargetAvailability()
     {
-        if (Vector3.Distance(transform.position, currentTarget.transform.position) <= untargetRange)
+        if (Vector3.Distance(transform.position, currentTarget.transform.position) <= untargetRange && targetVisible)
         {
             untargetTimer = 0;
+            if (!navigationAgent.isStopped) navigationAgent.SetDestination(transform.position);
         }
         else
         {
             untargetTimer += Time.deltaTime;
+
             if (untargetTimer > untargetDelay)
             {
                 SetCurrentTarget(null);
+                if (!navigationAgent.isStopped) navigationAgent.SetDestination(transform.position);
+            }
+            else
+            {
+                navigationAgent.SetDestination(currentTarget.transform.position);
             }
         }
     }

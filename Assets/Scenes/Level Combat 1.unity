@@ -216,17 +216,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6095231153969930982, guid: cc6e1b8db6a46d243a80ba2a5452b4f2, type: 3}
   m_PrefabInstance: {fileID: 2009519812}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &157545012 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 602063096176645023, guid: 6779ac956bbce534b9b270775c3d3fb5, type: 3}
-  m_PrefabInstance: {fileID: 1121179476}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a13ed72de42fee41a191d7283c9dbfb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &187798270
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1040,7 +1029,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.33333334
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
@@ -1199,7 +1188,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.33333334
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 0b55a23c66ea2864c846d98cdca31d2a, type: 2}
   m_BuildHeightMesh: 0
@@ -2775,11 +2764,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc6e1b8db6a46d243a80ba2a5452b4f2, type: 3}
---- !u!82 &2067882043 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 3953866139535600825, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
-  m_PrefabInstance: {fileID: 3516961995881561821}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2070485727
 GameObject:
   m_ObjectHideFlags: 0
@@ -3084,9 +3068,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1152908944378988548, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 157545012}
+      propertyPath: maxHealth
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1152908944378988548, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
+      propertyPath: damageProjectile
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1884993563295970383, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3110,18 +3098,6 @@ PrefabInstance:
     - target: {fileID: 4700500137848425926, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
       propertyPath: shotDelay
       value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4700500137848425926, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 157545012}
-    - target: {fileID: 4700500137848425926, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
-      propertyPath: transformSound
-      value: 
-      objectReference: {fileID: 2067882043}
-    - target: {fileID: 4700500137848425926, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
-      propertyPath: projectileSpawnDistance
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7403098292049066992, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
       propertyPath: m_LocalPosition.x

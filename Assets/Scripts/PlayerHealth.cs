@@ -8,10 +8,12 @@ public class PlayerHealth : MonoBehaviour
     private int health;
     public int damageProjectile = 1;
     public GameManager gameManager;
+    
     private void Start()
     {
         health = maxHealth;
     }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.GetComponent<ProjectileEnemy>() != null)

@@ -333,8 +333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionRange: 15
   untargetRange: 20
-  untargetDelay: 2
-  moveSpeed: 0
+  untargetDelay: 8
   turnSpeed: 6
   shootRate: 1
   playerLayer:
