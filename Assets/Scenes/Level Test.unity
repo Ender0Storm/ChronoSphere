@@ -1400,6 +1400,10 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1152908944378988548, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 2080394102}
     - target: {fileID: 1884993563295970383, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
       propertyPath: m_Name
       value: Player
