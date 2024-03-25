@@ -1,17 +1,15 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class DoorOpening : MonoBehaviour
+public class DoorClosing : MonoBehaviour
 {
     [SerializeField] private bool isOpen;
     [SerializeField] private Vector3 _doorPosClose;
     [SerializeField] private Vector3 _doorPosOpen;
     [SerializeField] private bool _isMoving;
 
-    public DoorOpening instance;
+    public DoorClosing instance;
 
     private void Awake()
     {
@@ -21,9 +19,9 @@ public class DoorOpening : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isOpen = false;
-        _doorPosClose = transform.position;
-        _doorPosOpen = transform.position + transform.localScale.y * Vector3.down;
+        isOpen = true;
+        _doorPosOpen = transform.position;
+        _doorPosClose = transform.position + transform.localScale.y * Vector3.up;
     }
 
     // Update is called once per frame
