@@ -34,7 +34,9 @@ public class PlayerMovement : MonoBehaviour
     public float projectileHeight = 0.5f;
     public float projectileSpawnDistance = 2.0f;
     public float shotDelay = 0.5f;
+    public float airTimeBeforeChange = 1.0f;
     private float timeSinceLastShot = 0.0f;
+    
 
     
     //Ball Mode
@@ -169,7 +171,22 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+
+
+        if (!isOnFloor && !isBallMode)
+        {
+            StartCoroutine(ChangeInBallWhileInAir());
+        }
         
+    }
+
+    IEnumerator ChangeInBallWhileInAir()
+    {
+        yield return new WaitForSeconds(airTimeBeforeChange);
+        if (!isOnFloor && !isBallMode)
+        {   
+            ChangeModeWhileInAir();
+        }
     }
 
     void MovePlayerShootMode()
@@ -214,8 +231,24 @@ public class PlayerMovement : MonoBehaviour
         gunSound.Play();
     }
     
-    //Serait appelé par le game manager
+    //Permet de changer de mode quand on est au sol et empêche de changer de mode en l'air
     public void ChangeMode()
+    {
+        if (!isTransforming && isOnFloor)
+        {
+            rollingSound.Stop();
+            walkingSound.Stop();
+            StartCoroutine(Transform());
+        }
+    }
+    
+    /*
+     * Permet de mode quand on est l'air.
+     * Utilisé par changeInBallWhileInAir pour ramener le
+     * joueur en boule quand il est en l'air en mode robot
+     */
+    
+    public void ChangeModeWhileInAir()
     {
         if (!isTransforming)
         {
@@ -316,6 +349,7 @@ public class PlayerMovement : MonoBehaviour
         }
         
     }
+    
 
     private void OnCollisionEnter(Collision other)
     {
@@ -336,6 +370,11 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 direction = other.gameObject.transform.forward;
             rb.velocity = (direction * speedBoost);
+        }
+
+        else
+        {
+            isOnFloor = false;
         }
     }
 }

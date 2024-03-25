@@ -49,7 +49,7 @@ public class Collapsing : MonoBehaviour
     {
         rb.useGravity = true;
         rb.isKinematic = false;
-        boxCollider.enabled = false;
+
     }
 
     private void GravityDisabled()
@@ -76,8 +76,15 @@ public class Collapsing : MonoBehaviour
         yield return new WaitForSeconds(1);
         yield return StartCoroutine(Flashing());
         yield return StartCoroutine(Flashing());
+        /*
+         Change le tag pour que le joueur pense qu'il n'est plus en contact avec le sol.
+         Sans ça, étant donné que le collider est désactivé, le OnCollisionExit du script
+         de mouvement ne s'active pas.
+         */
+        gameObject.tag = "Untagged";
         yield return StartCoroutine(Flashing());
         GavityEnabled();
+        boxCollider.enabled = false;
         yield return new WaitForSeconds(2);
         GravityDisabled();
         DisactivateCollider();
@@ -85,5 +92,6 @@ public class Collapsing : MonoBehaviour
         transform.position = _startPos;
         ActivateCollider();
         isCollapsing = false;
+        gameObject.tag = "Floor";
     }
 }
