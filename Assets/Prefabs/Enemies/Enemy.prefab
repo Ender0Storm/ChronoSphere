@@ -245,7 +245,6 @@ GameObject:
   - component: {fileID: 855888735569954393}
   - component: {fileID: 741842201250613426}
   - component: {fileID: 4202824891760288485}
-  - component: {fileID: 6988309387158460585}
   - component: {fileID: 5512940507845200752}
   m_Layer: 0
   m_Name: EnemyBody
@@ -320,27 +319,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &6988309387158460585
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5340795617556799144}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5512940507845200752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,7 +363,7 @@ GameObject:
   - component: {fileID: 3779939210713182288}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
