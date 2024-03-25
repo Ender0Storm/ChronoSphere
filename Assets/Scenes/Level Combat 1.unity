@@ -1521,6 +1521,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 475785346}
     - target: {fileID: 602063096176645023, guid: 6779ac956bbce534b9b270775c3d3fb5, type: 3}
+      propertyPath: playerIsDead
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 602063096176645023, guid: 6779ac956bbce534b9b270775c3d3fb5, type: 3}
       propertyPath: playerMovementScript
       value: 
       objectReference: {fileID: 1187902437}
