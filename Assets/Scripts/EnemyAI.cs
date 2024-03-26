@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Polybrush;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
@@ -18,6 +19,10 @@ public class EnemyAI : MonoBehaviour
     private float turnSpeed;
     [SerializeField]
     private float shootRate;
+    [SerializeField]
+    private List<Vector3> patrolRoute;
+    [SerializeField]
+    private float pauseTime;
 
     [Header("Layers")]
     [SerializeField]
@@ -38,15 +43,19 @@ public class EnemyAI : MonoBehaviour
     private float projectileDuration;
 
     private GameObject currentTarget;
+    private int currentPatrolPoint;
     private float shootTimer;
     private float untargetTimer;
+    private float pauseTimer;
     private NavMeshAgent navigationAgent;
     private bool targetVisible;
 
     // Start is called before the first frame update
     void Start()
     {
+        currentPatrolPoint = 0;
         shootTimer = shootRate;
+        pauseTimer = pauseTime;
         untargetTimer = 0;
         navigationAgent = transform.parent.GetComponent<NavMeshAgent>();
         targetVisible = false;
@@ -58,6 +67,7 @@ public class EnemyAI : MonoBehaviour
         if (currentTarget == null)
         {
             FindTarget();
+            Patrolling();
         }
         else
         {
@@ -79,10 +89,32 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    void Patrolling()
+    {
+        if (patrolRoute.Count == 1) navigationAgent.SetDestination(patrolRoute[0]);
+        else if (patrolRoute.Count > 1)
+        {
+            if (navigationAgent.velocity.sqrMagnitude < 0.01 && navigationAgent.remainingDistance < 0.1)
+            {
+                if (pauseTimer >= pauseTime)
+                {
+                    currentPatrolPoint = (currentPatrolPoint + 1) % patrolRoute.Count;
+
+                    navigationAgent.SetDestination(patrolRoute[currentPatrolPoint]);
+                    pauseTimer = 0;
+                }
+                else
+                {
+                    pauseTimer += Time.deltaTime;
+                }
+            }
+        }
+    }
+
     void UpdateVisibility()
     {
         Vector3 lookVector = currentTarget.transform.position - transform.position;
-        targetVisible = !Physics.Raycast(transform.position, lookVector, lookVector.magnitude, groundLayer);
+        targetVisible = !Physics.SphereCast(transform.position, projectilePrefab.transform.localScale.x, lookVector, out _, lookVector.magnitude, groundLayer);
     }
 
     void AimTowardTarget(Vector3 target)
@@ -142,5 +174,12 @@ public class EnemyAI : MonoBehaviour
     {
         currentTarget = target;
         untargetTimer = 0;
+    }
+
+    public void SetPatrolRoute(List<Vector3> route)
+    {
+        navigationAgent.SetDestination(transform.position);
+        currentPatrolPoint = 0;
+        patrolRoute = route;
     }
 }

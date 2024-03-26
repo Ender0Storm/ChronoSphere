@@ -331,11 +331,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7145ec3d53058f74e9eba230c89a8734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 15
-  untargetRange: 20
+  detectionRange: 12
+  untargetRange: 15
   untargetDelay: 8
-  turnSpeed: 6
-  shootRate: 1
+  turnSpeed: 5
+  shootRate: 1.5
+  patrolRoute: []
+  pauseTime: 5
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -345,7 +347,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 4170493040866861988, guid: d3435386535ae2a4381cc3fb13f037a6, type: 3}
   projectileSpawn: {fileID: 7585711878089078344}
   projectileSound: {fileID: 5407305772049724173}
-  projectileSpeed: 20
+  projectileSpeed: 15
   projectileDuration: 10
 --- !u!1 &5435186684269521120
 GameObject:

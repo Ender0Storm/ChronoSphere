@@ -2534,6 +2534,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5512940507845200752, guid: 86f5b5d831a0d254299670c9492082b0, type: 3}
+      propertyPath: patrolRoute.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5512940507845200752, guid: 86f5b5d831a0d254299670c9492082b0, type: 3}
+      propertyPath: patrolRoute.Array.data[0].x
+      value: -11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5512940507845200752, guid: 86f5b5d831a0d254299670c9492082b0, type: 3}
+      propertyPath: patrolRoute.Array.data[0].y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5512940507845200752, guid: 86f5b5d831a0d254299670c9492082b0, type: 3}
+      propertyPath: patrolRoute.Array.data[0].z
+      value: -18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5512940507845200752, guid: 86f5b5d831a0d254299670c9492082b0, type: 3}
+      propertyPath: patrolRoute.Array.data[1].x
+      value: -18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5512940507845200752, guid: 86f5b5d831a0d254299670c9492082b0, type: 3}
+      propertyPath: patrolRoute.Array.data[1].y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5512940507845200752, guid: 86f5b5d831a0d254299670c9492082b0, type: 3}
+      propertyPath: patrolRoute.Array.data[1].z
+      value: -8
+      objectReference: {fileID: 0}
     - target: {fileID: 5837479855211757929, guid: 86f5b5d831a0d254299670c9492082b0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.683577
