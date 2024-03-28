@@ -8,6 +8,8 @@ public class PlayerHealth : MonoBehaviour
     private int health;
     public int damageProjectile = 1;
     public GameManager gameManager;
+    public GameObject explosionPrefab;
+    public GameObject playerBody;
     
     private void Start()
     {
@@ -22,11 +24,17 @@ public class PlayerHealth : MonoBehaviour
             health-=damageProjectile;
         }
 
-        if (health <= 0)
+        if (health == 0)
         {
-            gameObject.SetActive(false);
-            gameManager.GameOver();
+            playerBody.SetActive(false);
+            explosionPrefab.GetComponent<ParticleSystem>().Play();
+            Invoke("GameOver", 2f);
         }
+    }
+    
+    private void GameOver()
+    {
+        gameManager.GameOver();
     }
     
     
