@@ -45,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
     public float maxSpeed = 20f;
     public float dashSpeed = 50f;
     public float dashDuration = 0.2f;
+    public float boostDuration = 1f;
+    public float jumpAble = 0.2f;
     public float dashCooldown = 1f;
     public float startSpeed = 5f;
     public float jumpForce = 10f;
@@ -341,13 +343,13 @@ public class PlayerMovement : MonoBehaviour
         yield return null;
     }
 
-    private void OnCollisionExit(Collision other)
+    private IEnumerator OnCollisionExit(Collision other)
     {
         if (other.gameObject.CompareTag("Floor")) 
         {
+            yield return new WaitForSeconds(jumpAble);
             isOnFloor = false;
         }
-        
     }
     
 
@@ -359,7 +361,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     
-    private void OnCollisionStay(Collision other)
+    private IEnumerator OnCollisionStay(Collision other)
     {
         if (other.gameObject.CompareTag("Floor")) 
         {
@@ -368,8 +370,16 @@ public class PlayerMovement : MonoBehaviour
     
         else if (other.gameObject.CompareTag("BoostPad") && isBallMode)
         {
+            isDashing = true;
+            canDash = false;
             Vector3 direction = other.gameObject.transform.forward;
             rb.velocity = (direction * speedBoost);
+            yield return new WaitForSeconds(boostDuration);
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+            isDashing = false;
+            //Ajout d'un délais avant de pouvoir recommencer le dash
+            yield return new WaitForSeconds(dashCooldown);
+            canDash = true;
         }
 
         else
