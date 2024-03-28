@@ -62,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isDashing;
     private bool isTransforming;
     private bool canDash;
+    public bool canMove = true;
 
 
     public GameManager gameManager;
@@ -83,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!isTransforming)
+        if (!isTransforming && canMove)
         {
             if (isBallMode)
             {
@@ -110,7 +111,9 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
-        float speed = this.GetComponent<Rigidbody>().velocity.magnitude;
+        if (canMove)
+        {
+            float speed = this.GetComponent<Rigidbody>().velocity.magnitude;
         rollingSound.pitch = Mathf.Clamp(speed / maxSpeed, minPitch, maxPitch);
         gameIsPaused = gameManager.gameIsPaused;
         
@@ -178,6 +181,7 @@ public class PlayerMovement : MonoBehaviour
         if (!isOnFloor && !isBallMode)
         {
             StartCoroutine(ChangeInBallWhileInAir());
+        }
         }
         
     }

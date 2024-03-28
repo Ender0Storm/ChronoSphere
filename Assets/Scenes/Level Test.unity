@@ -793,6 +793,16 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7675533676084399651, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
   m_PrefabInstance: {fileID: 3516961995881561821}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1312842743 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7678928297478790339, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
+  m_PrefabInstance: {fileID: 3516961995881561821}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1352666280 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8246508435848059960, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
+  m_PrefabInstance: {fileID: 3516961995881561821}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1435352762
 GameObject:
   m_ObjectHideFlags: 0
@@ -1415,12 +1425,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1152908944378988548, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
       propertyPath: maxHealth
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1152908944378988548, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 2080394102}
+    - target: {fileID: 1152908944378988548, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
+      propertyPath: explosionSound
+      value: 
+      objectReference: {fileID: 1352666280}
+    - target: {fileID: 1152908944378988548, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 1187902437}
     - target: {fileID: 1152908944378988548, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
       propertyPath: explosionPrefab
       value: 
@@ -1437,6 +1455,22 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 2080394102}
+    - target: {fileID: 5590004115690628575, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5590004115690628575, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
+      propertyPath: m_Sources.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5590004115690628575, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
+      propertyPath: m_Sources.Array.data[0].weight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5590004115690628575, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
+      propertyPath: m_Sources.Array.data[0].sourceTransform
+      value: 
+      objectReference: {fileID: 1312842743}
     - target: {fileID: 7403098292049066992, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1501,8 +1535,13 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7678928297478790339, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
+    - {fileID: 266970504631325050, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
