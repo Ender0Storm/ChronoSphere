@@ -51,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
     public float startSpeed = 5f;
     public float jumpForce = 10f;
     public float jumpPadForce = 15f;
+    public float jumpPadBounceRatio = 0f;
     public float speedBoost = 30f;
     
     private Rigidbody rb;
@@ -96,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
                 //Met une limite de vitesse quand on est pas entrain de dash
                 if (!isDashing)
                 {
-                    rb.AddForce(movement * speedBallMode);
+                    rb.AddForce(movement * speedBallMode, ForceMode.Acceleration);
                     rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
                 }
             }
@@ -113,77 +114,76 @@ public class PlayerMovement : MonoBehaviour
 
         if (canMove)
         {
-            float speed = this.GetComponent<Rigidbody>().velocity.magnitude;
-        rollingSound.pitch = Mathf.Clamp(speed / maxSpeed, minPitch, maxPitch);
-        gameIsPaused = gameManager.gameIsPaused;
-        
-        if (!isTransforming&& !gameIsPaused)
-        {
-            if (isBallMode)
+            float speed = GetComponent<Rigidbody>().velocity.magnitude;
+            rollingSound.pitch = Mathf.Clamp(speed / maxSpeed, minPitch, maxPitch);
+            gameIsPaused = gameManager.gameIsPaused;
+            
+            if (!isTransforming&& !gameIsPaused)
             {
-                if (Input.GetButtonDown("Dash") && canDash && !isDashing)
+                if (isBallMode)
                 {
-                    float moveHorizontal = Input.GetAxis("Horizontal");
-                    float moveVertical = Input.GetAxis("Vertical");
-
-                    Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
-                    StartCoroutine(Dash(movement));
-                }
-                else if (Input.GetButtonDown("Jump") && isOnFloor)
-                {
-                    rb.velocity += (Vector3.up * jumpForce);
-                    isOnFloor = false;
-                }
-
-                if (this.GetComponent<Rigidbody>().velocity.magnitude > 2f && isOnFloor)
-                {
-                    if (!rollingSound.isPlaying)
+                    if (Input.GetButtonDown("Dash") && canDash && !isDashing)
                     {
-                        
-                        rollingSound.Play();
+                        float moveHorizontal = Input.GetAxis("Horizontal");
+                        float moveVertical = Input.GetAxis("Vertical");
 
+                        Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
+                        StartCoroutine(Dash(movement));
+                    }
+                    else if (Input.GetButtonDown("Jump") && isOnFloor)
+                    {
+                        rb.velocity += Vector3.up * jumpForce;
+                        isOnFloor = false;
+                    }
+
+                    if (GetComponent<Rigidbody>().velocity.magnitude > 2f && isOnFloor)
+                    {
+                        if (!rollingSound.isPlaying)
+                        {
+                            
+                            rollingSound.Play();
+
+                        }
+                    }
+                    else
+                    {
+                        if (rollingSound.isPlaying)
+                        {
+                            rollingSound.Stop();
+                        }
                     }
                 }
                 else
                 {
-                    if (rollingSound.isPlaying)
+                    if (Input.GetButtonDown("Fire1") && Time.time > timeSinceLastShot + shotDelay)
                     {
-                        rollingSound.Stop();
+                        FireProjectile();
+                        timeSinceLastShot = Time.time; 
+                    } 
+
+                    if (GetComponent<Rigidbody>().velocity.magnitude > 2f && isOnFloor)
+                    {
+                        if (!walkingSound.isPlaying)
+                        {
+                            walkingSound.Play();
+                        }
+                    }
+                    else
+                    {
+                        if (walkingSound.isPlaying)
+                        {
+                            walkingSound.Stop();
+                        }
                     }
                 }
             }
-            else
+
+
+            if (!isOnFloor && !isBallMode)
             {
-                if (Input.GetButtonDown("Fire1") && Time.time > timeSinceLastShot + shotDelay)
-                {
-                    FireProjectile();
-                    timeSinceLastShot = Time.time; 
-                } 
-
-                if (this.GetComponent<Rigidbody>().velocity.magnitude > 2f && isOnFloor)
-                {
-                    if (!walkingSound.isPlaying)
-                    {
-                        walkingSound.Play();
-                    }
-                }
-                else
-                {
-                    if (walkingSound.isPlaying)
-                    {
-                        walkingSound.Stop();
-                    }
-                }
+                StartCoroutine(ChangeInBallWhileInAir());
             }
         }
-
-
-        if (!isOnFloor && !isBallMode)
-        {
-            StartCoroutine(ChangeInBallWhileInAir());
-        }
-        }
-        
     }
 
     IEnumerator ChangeInBallWhileInAir()
@@ -361,7 +361,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("JumpPad") && isBallMode)
         {
-            rb.velocity += (Vector3.up * jumpPadForce);
+            Vector3 jumpPadNormal = other.GetContact(0).normal;
+            Vector3 projectedVelocity = Vector3.Dot(other.relativeVelocity, jumpPadNormal) * jumpPadNormal;
+            rb.AddForce(jumpPadNormal * jumpPadForce + projectedVelocity * jumpPadBounceRatio, ForceMode.Impulse);
         }
     }
     
@@ -377,7 +379,7 @@ public class PlayerMovement : MonoBehaviour
             isDashing = true;
             canDash = false;
             Vector3 direction = other.gameObject.transform.forward;
-            rb.velocity = (direction * speedBoost);
+            rb.velocity = direction * speedBoost;
             yield return new WaitForSeconds(boostDuration);
             rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
             isDashing = false;
