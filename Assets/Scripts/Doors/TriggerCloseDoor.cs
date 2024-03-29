@@ -6,8 +6,10 @@ public class TriggerCloseDoor : MonoBehaviour
 {
     [SerializeField] public GameObject door;
     [SerializeField] public GameObject doorGroup;
+    [SerializeField] public GameManager gameManager;
     private DoorOpening doorOpeningInstance;
     private DoorClosing doorClosingInstance;
+    
 
     private void Start()
     {
@@ -29,6 +31,7 @@ public class TriggerCloseDoor : MonoBehaviour
         {
             doorOpeningInstance.CloseDoor();
             doorClosingInstance.CloseDoor();
+            gameManager.SetRespawnPoint();
         }
     }
 }

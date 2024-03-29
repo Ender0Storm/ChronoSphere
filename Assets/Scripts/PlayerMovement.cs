@@ -62,10 +62,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isTransforming;
     private bool canDash;
     public bool canMove = true;
-
-
-    public GameManager gameManager;
-    private bool gameIsPaused;
+    public bool gameIsPaused;
 
 
 
@@ -79,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
         transformingLerp = 1;
         isBallMode = false;
         canDash = true;
+        gameIsPaused = false;
     }
 
     void FixedUpdate()
@@ -114,7 +112,6 @@ public class PlayerMovement : MonoBehaviour
         {
             float speed = GetComponent<Rigidbody>().velocity.magnitude;
             rollingSound.pitch = Mathf.Clamp(speed / maxSpeed, minPitch, maxPitch);
-            gameIsPaused = gameManager.gameIsPaused;
             
             if (!isTransforming&& !gameIsPaused)
             {
@@ -391,5 +388,15 @@ public class PlayerMovement : MonoBehaviour
         {
             isOnFloor = false;
         }
+    }
+    
+    public void SetPosition(Vector3 position)
+    {
+        transform.position = position;
+    }
+    
+    public Vector3 GetPosition()
+    {
+        return transform.position;
     }
 }

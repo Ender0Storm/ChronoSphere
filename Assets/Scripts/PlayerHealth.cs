@@ -7,13 +7,13 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 3;
     private int health;
     public int damageProjectile = 1;
-    public GameManager gameManager;
     public GameObject explosionPrefab;
     public GameObject sparksPrefab;
     public GameObject playerBody;
     public AudioSource explosionSound;
     public AudioSource hitSound;
     public PlayerMovement playerMovement;
+    public bool playerIsDead = false;
     
     private void Start()
     {
@@ -35,19 +35,35 @@ public class PlayerHealth : MonoBehaviour
 
         if (health == 0)
         {
-            playerMovement.canMove = false;
-            explosionSound.Play();
-            playerBody.SetActive(false);
-            explosionPrefab.GetComponent<ParticleSystem>().Play();
-            Invoke("GameOver", 2f);
+            GameOver();
+            // playerMovement.canMove = false;
+            // explosionSound.Play();
+            // playerBody.SetActive(false);
+            // explosionPrefab.GetComponent<ParticleSystem>().Play();
+            // Invoke("GameOver", 2f);
         }
     }
     
-    private void GameOver()
+    public void GameOver()
     {
-        gameManager.GameOver();
+        playerMovement.canMove = false;
+        explosionSound.Play();
+        playerBody.SetActive(false);
+        explosionPrefab.GetComponent<ParticleSystem>().Play();
+        Invoke("SetPlayerIsDead", 2f);
+    }
+
+    public void SetPlayerIsDead()
+    {
+        playerIsDead = true;
     }
     
+    public void Respawn()
+    {
+        health = maxHealth;
+        playerBody.SetActive(true);
+        playerMovement.canMove = true;
+    }
     
 }
 
