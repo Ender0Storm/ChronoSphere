@@ -20,7 +20,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField]
     private float shootRate;
     [SerializeField]
-    private List<Vector3> patrolRoute;
+    private List<Transform> patrolRoute;
     [SerializeField]
     private float pauseTime;
 
@@ -91,7 +91,7 @@ public class EnemyAI : MonoBehaviour
 
     void Patrolling()
     {
-        if (patrolRoute.Count == 1) navigationAgent.SetDestination(patrolRoute[0]);
+        if (patrolRoute.Count == 1) navigationAgent.SetDestination(patrolRoute[0].position);
         else if (patrolRoute.Count > 1)
         {
             if (navigationAgent.velocity.sqrMagnitude < 0.01 && navigationAgent.remainingDistance < 0.1)
@@ -100,7 +100,7 @@ public class EnemyAI : MonoBehaviour
                 {
                     currentPatrolPoint = (currentPatrolPoint + 1) % patrolRoute.Count;
 
-                    navigationAgent.SetDestination(patrolRoute[currentPatrolPoint]);
+                    navigationAgent.SetDestination(patrolRoute[currentPatrolPoint].position);
                     pauseTimer = 0;
                 }
                 else
@@ -176,7 +176,7 @@ public class EnemyAI : MonoBehaviour
         untargetTimer = 0;
     }
 
-    public void SetPatrolRoute(List<Vector3> route)
+    public void SetPatrolRoute(List<Transform> route)
     {
         navigationAgent.SetDestination(transform.position);
         currentPatrolPoint = 0;
