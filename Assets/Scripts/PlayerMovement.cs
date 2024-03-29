@@ -50,8 +50,6 @@ public class PlayerMovement : MonoBehaviour
     public float dashCooldown = 1f;
     public float startSpeed = 5f;
     public float jumpForce = 10f;
-    public float jumpPadForce = 15f;
-    public float jumpPadBounceRatio = 0f;
     public float speedBoost = 30f;
     
     private Rigidbody rb;
@@ -359,11 +357,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("JumpPad") && isBallMode)
+        JumpPadInfo info = other.gameObject.GetComponent<JumpPadInfo>();
+        if (info != null && isBallMode)
         {
             Vector3 jumpPadNormal = other.GetContact(0).normal;
             Vector3 projectedVelocity = Vector3.Dot(other.relativeVelocity, jumpPadNormal) * jumpPadNormal;
-            rb.AddForce(jumpPadNormal * jumpPadForce + projectedVelocity * jumpPadBounceRatio, ForceMode.Impulse);
+            rb.AddForce(jumpPadNormal * info.jumpPadForce + projectedVelocity * info.jumpPadBounceRatio, ForceMode.Impulse);
         }
     }
     
