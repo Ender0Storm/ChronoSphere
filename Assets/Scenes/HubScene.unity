@@ -1609,6 +1609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a8dfa8600845fd4498f1cc74cf17d6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneToLoad: LevelOneScene
 --- !u!1 &1558821149 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1221511839092570221, guid: 802df72c5aacea044a6feff7ef297335, type: 3}

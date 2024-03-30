@@ -17,7 +17,7 @@ public class HubManager : MonoBehaviour
 
     void GetGameData()
     {
-        gameData = GameObject.FindGameObjectWithTag("GameData").GetComponent<GameData>();
+        gameData = GameData.gameDataInstance;
         GameObject door = levelDoors[gameData.GetCurrentLevel()];
         door.transform.Find("doorOpenTrigger").gameObject.SetActive(true);
         door.transform.Find("doorCloseTrigger").gameObject.SetActive(true);

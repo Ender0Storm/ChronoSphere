@@ -5,24 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class LoadingScene : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField]
+    private string sceneToLoad;
     
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             //Load the next scene
-            SceneManager.LoadScene("LevelOneScene");
+            SceneManager.LoadScene(sceneToLoad);
         }
     }
 }

@@ -5,12 +5,19 @@ using UnityEngine;
 
 public class GameData : MonoBehaviour
 {
+    public static GameData gameDataInstance;
+
     private int currentLevel;
     private int currentCheckpoint;
 
     // Start is called before the first frame update
     void Awake() {
-        DontDestroyOnLoad(gameObject);
+        if (gameDataInstance != null) {
+            Destroy(gameObject);
+        } else {
+            gameDataInstance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     void Start() {
