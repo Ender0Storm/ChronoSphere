@@ -30,7 +30,7 @@ public class PlayerHealth : MonoBehaviour
                 sparksPrefab.GetComponent<ParticleSystem>().Play();
             }
             health -= damageProjectile;
-            //hitSound.pitch = 1 - ((float)health / maxHealth); // Modifie le pitch pour qu'il augmente lorsque la santé diminue
+            hitSound.pitch = 1.5f - ((float)health / maxHealth); // Modifie le pitch pour qu'il augmente lorsque la santé diminue
         }
 
         if (health == 0)
