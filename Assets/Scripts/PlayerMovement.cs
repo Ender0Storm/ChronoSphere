@@ -98,9 +98,10 @@ public class PlayerMovement : MonoBehaviour
                 //Met une limite de vitesse quand on est pas entrain de dash
                 if (!isDashing)
                 {
-                    Quaternion cameraAdjustment = Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y + 90, 0);
-                    rb.AddTorque(cameraAdjustment * (movement * speedBallMode), ForceMode.Acceleration);
-                    rb.AddForce(movement * speedBallMode, ForceMode.Acceleration);
+                    Quaternion torqueCameraAdjustment = Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y + 90, 0);
+                    Quaternion cameraAdjustment = Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y, 0);
+                    rb.AddTorque(torqueCameraAdjustment * (movement * speedBallMode), ForceMode.Acceleration);
+                    rb.AddForce(cameraAdjustment * (movement * speedBallMode), ForceMode.Acceleration);
                 }
             }
             else
@@ -203,7 +204,8 @@ public class PlayerMovement : MonoBehaviour
         
         Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
 
-        rb.AddForce(movement * accShootMode, ForceMode.Acceleration);
+        Quaternion cameraAdjustment = Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y, 0);
+        rb.AddForce(cameraAdjustment * (movement * accShootMode), ForceMode.Acceleration);
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, speedShootMode);
     }
     
