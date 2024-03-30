@@ -40,7 +40,6 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
         Cursor.SetCursor(cursorTexture, adjustAimPosition, CursorMode.Auto);
         respawnPoint = playerInSpaceWorld.transform.position;
-        print(playerMovementInstance);
     }
 
 
@@ -133,7 +132,6 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         playerHealthInstance.playerIsDead = false;
-        print(playerMovementInstance);
         playerInSpaceWorld.transform.position = respawnPoint;
         playerHealthInstance.Respawn();
         playerBody.SetActive(true);
