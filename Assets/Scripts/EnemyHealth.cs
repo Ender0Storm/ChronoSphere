@@ -8,6 +8,7 @@ public class EnemyHealth : MonoBehaviour
     private int health;
     private Renderer rend;
     public float minSpeedForDamage = 5f;
+    public bool isDead = false;
 
     public int damageCollision = 6;
     public int damageProjectile = 1;
@@ -45,6 +46,7 @@ public class EnemyHealth : MonoBehaviour
 
         if (health <= 0)
         {
+            isDead = true;
             StartCoroutine(DestroyAfterSound());
             StartCoroutine(DelayHeadDetach(0.0f));
         }
