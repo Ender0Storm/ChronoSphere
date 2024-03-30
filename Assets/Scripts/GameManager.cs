@@ -3,10 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 
 public class GameManager : MonoBehaviour
 {
     public PlayerMovement playerMovementScript;
+    public GameObject playerBody;
+    public GameObject playerInSpaceWorld;
     
     public Texture2D cursorTexture;
     public Vector2 adjustAimPosition = Vector2.zero;
@@ -16,10 +20,15 @@ public class GameManager : MonoBehaviour
     private Texture2D previousCursorTexture;
     private Vector2 previousCursorHotspot;
     private CursorMode previousCursorMode;
+    //Pour respawn player
+    public Vector3 respawnPoint;
+    public PlayerHealth playerHealthInstance;
+    public PlayerMovement playerMovementInstance;
+    
     
     [HideInInspector]
     public bool gameIsPaused = false;
-    public bool playerIsDead = false;
+    
     
     private void Awake()
     {
@@ -30,14 +39,15 @@ public class GameManager : MonoBehaviour
     {
         Cursor.visible = true;
         Cursor.SetCursor(cursorTexture, adjustAimPosition, CursorMode.Auto);
+        respawnPoint = playerInSpaceWorld.transform.position;
     }
 
 
     void Update()
     {
-        if (playerIsDead)
+        if (playerHealthInstance.playerIsDead)
         {
-            Pause();
+            GameOver();
         }
         
         isBall = playerMovementScript.isBallMode;
@@ -85,7 +95,7 @@ public class GameManager : MonoBehaviour
 
         gameOverMenuUI.SetActive(true);
         Time.timeScale = 0f;
-        gameIsPaused = true;
+        playerMovementInstance.gameIsPaused = true;
     }
     
     public void Resume ()
@@ -105,8 +115,13 @@ public class GameManager : MonoBehaviour
 
         gameOverMenuUI.SetActive(false);
         Time.timeScale = 1f;
-        gameIsPaused = false;
+        playerMovementInstance.gameIsPaused = false;
 
+    }
+    
+    public void SetRespawnPoint()
+    {
+        respawnPoint = playerInSpaceWorld.transform.position;
     }
     
     public void QuitGame()
@@ -116,10 +131,18 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        if (playerIsDead == false)
-        {
-            playerIsDead = true;
-        }
+        playerHealthInstance.playerIsDead = false;
+        playerInSpaceWorld.transform.position = respawnPoint;
+        playerHealthInstance.Respawn();
+        playerBody.SetActive(true);
+        StartCoroutine(PlayerFalshing());
+    }
 
+    private IEnumerator PlayerFalshing()
+    {
+        playerBody.SetActive(false);
+        yield return new WaitForSeconds(0.25f);
+        playerBody.SetActive(true);
+        yield return new WaitForSeconds(0.25f);
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
@@ -43,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Ball Mode")]
     public float speedBallMode = 10f;
     public float maxSpeed = 20f;
+    public float decelerationRate = 0.5f;
     public float dashSpeed = 50f;
     public float dashDuration = 0.2f;
     public float boostDuration = 1f;
@@ -50,8 +52,6 @@ public class PlayerMovement : MonoBehaviour
     public float dashCooldown = 1f;
     public float startSpeed = 5f;
     public float jumpForce = 10f;
-    public float jumpPadForce = 15f;
-    public float jumpPadBounceRatio = 0f;
     public float speedBoost = 30f;
     
     private Rigidbody rb;
@@ -64,10 +64,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isTransforming;
     private bool canDash;
     public bool canMove = true;
-
-
-    public GameManager gameManager;
-    private bool gameIsPaused;
+    public bool gameIsPaused;
 
 
 
@@ -76,11 +73,13 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.maxAngularVelocity = maxSpeed;
         shootCollider = GetComponent<CapsuleCollider>();
         ballCollider = GetComponent<SphereCollider>();
         transformingLerp = 1;
         isBallMode = false;
         canDash = true;
+        gameIsPaused = false;
     }
 
     void FixedUpdate()
@@ -92,13 +91,16 @@ public class PlayerMovement : MonoBehaviour
                 float moveHorizontal = Input.GetAxis("Horizontal");
                 float moveVertical = Input.GetAxis("Vertical");
 
-                Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
+                Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical).normalized;
+                Vector3 counterMovement = math.min(0, Vector3.Dot(movement, rb.velocity.normalized)) * rb.velocity.normalized * decelerationRate;
+                movement += counterMovement;
 
                 //Met une limite de vitesse quand on est pas entrain de dash
                 if (!isDashing)
                 {
+                    Quaternion cameraAdjustment = Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y + 90, 0);
+                    rb.AddTorque(cameraAdjustment * (movement * speedBallMode), ForceMode.Acceleration);
                     rb.AddForce(movement * speedBallMode, ForceMode.Acceleration);
-                    rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
                 }
             }
             else
@@ -116,7 +118,6 @@ public class PlayerMovement : MonoBehaviour
         {
             float speed = GetComponent<Rigidbody>().velocity.magnitude;
             rollingSound.pitch = Mathf.Clamp(speed / maxSpeed, minPitch, maxPitch);
-            gameIsPaused = gameManager.gameIsPaused;
             
             if (!isTransforming&& !gameIsPaused)
             {
@@ -202,7 +203,7 @@ public class PlayerMovement : MonoBehaviour
         
         Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
 
-        rb.AddForce(movement * accShootMode);
+        rb.AddForce(movement * accShootMode, ForceMode.Acceleration);
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, speedShootMode);
     }
     
@@ -268,9 +269,9 @@ public class PlayerMovement : MonoBehaviour
     {
         isDashing = true;
         canDash = false;
+        rb.AddTorque(Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y + 90, 0) * (direction * speedBallMode), ForceMode.Impulse);
         rb.AddForce(direction * dashSpeed, ForceMode.Impulse);
         yield return new WaitForSeconds(dashDuration);
-        rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
         isDashing = false;
         //Ajout d'un délais avant de pouvoir recommencer le dash
         yield return new WaitForSeconds(dashCooldown);
@@ -359,11 +360,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("JumpPad") && isBallMode)
+        JumpPadInfo info = other.gameObject.GetComponent<JumpPadInfo>();
+        if (info != null && isBallMode)
         {
             Vector3 jumpPadNormal = other.GetContact(0).normal;
             Vector3 projectedVelocity = Vector3.Dot(other.relativeVelocity, jumpPadNormal) * jumpPadNormal;
-            rb.AddForce(jumpPadNormal * jumpPadForce + projectedVelocity * jumpPadBounceRatio, ForceMode.Impulse);
+            rb.AddForce(jumpPadNormal * info.jumpPadForce + projectedVelocity * info.jumpPadBounceRatio, ForceMode.Impulse);
         }
     }
     
@@ -392,5 +394,15 @@ public class PlayerMovement : MonoBehaviour
         {
             isOnFloor = false;
         }
+    }
+    
+    public void SetPosition(Vector3 position)
+    {
+        transform.position = position;
+    }
+    
+    public Vector3 GetPosition()
+    {
+        return transform.position;
     }
 }

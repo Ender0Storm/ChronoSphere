@@ -311,3 +311,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   door: {fileID: 4698912010961339646}
   doorGroup: {fileID: 5999234664945462614}
+  gameManager: {fileID: 7065086119358836692, guid: 6779ac956bbce534b9b270775c3d3fb5, type: 3}
