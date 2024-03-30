@@ -45,11 +45,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (playerHealthInstance.playerIsDead)
-        {
-            GameOver();
-        }
-        
         isBall = playerMovementScript.isBallMode;
         //Permet de changer de mode
         if (Input.GetKeyDown(KeyCode.F) && !gameIsPaused)
@@ -78,6 +73,11 @@ public class GameManager : MonoBehaviour
             {
                 Pause();
             }
+        }
+        
+        if (playerHealthInstance.playerIsDead)
+        {
+            GameOver();
         }
     }
     
@@ -134,15 +134,23 @@ public class GameManager : MonoBehaviour
         playerHealthInstance.playerIsDead = false;
         playerInSpaceWorld.transform.position = respawnPoint;
         playerHealthInstance.Respawn();
-        playerBody.SetActive(true);
         StartCoroutine(PlayerFalshing());
     }
 
     private IEnumerator PlayerFalshing()
     {
-        playerBody.SetActive(false);
-        yield return new WaitForSeconds(0.25f);
-        playerBody.SetActive(true);
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.3f);
+        playerHealthInstance.SetRendererEnabled(false);
+        yield return new WaitForSeconds(0.1f);
+        playerHealthInstance.SetRendererEnabled(true);
+        yield return new WaitForSeconds(0.3f);
+        playerHealthInstance.SetRendererEnabled(false);
+        yield return new WaitForSeconds(0.1f);
+        playerHealthInstance.SetRendererEnabled(true);
+        yield return new WaitForSeconds(0.3f);
+        playerHealthInstance.SetRendererEnabled(false);
+        yield return new WaitForSeconds(0.1f);
+        playerHealthInstance.SetRendererEnabled(true);
     }
+    
 }
