@@ -6,22 +6,16 @@ using UnityEngine;
 
 public class DoorOpening : MonoBehaviour
 {
-    [SerializeField] private bool isOpen;
-    [SerializeField] private Vector3 _doorPosClose;
-    [SerializeField] private Vector3 _doorPosOpen;
-    [SerializeField] private bool _isMoving;
-
-    public DoorOpening instance;
-
-    private void Awake()
-    {
-        instance = this;
-    }
+    private bool isOpen;
+    private Vector3 _doorPosClose;
+    private Vector3 _doorPosOpen;
+    private bool _isMoving;
 
     // Start is called before the first frame update
     void Start()
     {
         isOpen = false;
+        _isMoving = false;
         _doorPosClose = transform.position;
         _doorPosOpen = transform.position + transform.localScale.y * Vector3.down;
     }
