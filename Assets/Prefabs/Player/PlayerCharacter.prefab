@@ -241,8 +241,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1884993563295970383}
   serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 6
+  m_Drag: 0.2
   m_AngularDrag: 0.4
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -283,11 +283,11 @@ MonoBehaviour:
   rollingSound: {fileID: 2868091959025948087}
   gunSound: {fileID: 490428591137056696}
   transformSound: {fileID: 3953866139535600825}
-  accShootMode: 50
+  accShootMode: 100
   speedShootMode: 4
   turnSpeed: 8
   projectilePrefab: {fileID: 4170493040866861988, guid: af1eb3bb3d542124c9a7b3ef8721a2b6, type: 3}
-  projectileSpeed: 40
+  projectileSpeed: 30
   projectileTime: 5
   aimAdjustment: 0.5
   projectileHeight: 0.6
@@ -296,18 +296,18 @@ MonoBehaviour:
   airTimeBeforeChange: 1
   speedBallMode: 10
   maxSpeed: 20
-  dashSpeed: 50
+  decelerationRate: 1
+  dashSpeed: 140
   dashDuration: 0.2
   boostDuration: 1
   jumpAble: 0.2
   dashCooldown: 1
-  startSpeed: 5
-  jumpForce: 10
-  jumpPadForce: 15
-  speedBoost: 30
+  startSpeed: 10
+  jumpForce: 15
+  speedBoost: 40
   isBallMode: 0
   canMove: 1
-  gameManager: {fileID: 602063096176645023, guid: 6779ac956bbce534b9b270775c3d3fb5, type: 3}
+  gameIsPaused: 0
 --- !u!114 &1152908944378988548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,13 +322,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 1
   damageProjectile: 1
-  gameManager: {fileID: 602063096176645023, guid: 6779ac956bbce534b9b270775c3d3fb5, type: 3}
   explosionPrefab: {fileID: 7675533676084399651}
   sparksPrefab: {fileID: 6833208716292681093}
   playerBody: {fileID: 329656125138447166}
   explosionSound: {fileID: 8246508435848059960}
   hitSound: {fileID: 852397726405445719}
   playerMovement: {fileID: 4700500137848425926}
+  playerIsDead: 0
 --- !u!1 &2631584918407506873
 GameObject:
   m_ObjectHideFlags: 0
