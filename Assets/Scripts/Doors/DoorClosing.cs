@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class DoorClosing : MonoBehaviour
 {
+    [SerializeField]
+    private float closeSpeed = 1.0f;
+
     private bool isOpen;
     private Vector3 _doorPosClose;
     private Vector3 _doorPosOpen;
@@ -25,7 +28,7 @@ public class DoorClosing : MonoBehaviour
         {
             if (transform.position.y > _doorPosOpen.y)
             {
-                transform.position += Vector3.down * 0.05f;
+                transform.position += Vector3.down * Time.deltaTime * closeSpeed;
             }
         }
         
@@ -33,7 +36,7 @@ public class DoorClosing : MonoBehaviour
         {
             if (transform.position.y < _doorPosClose.y)
             {
-                transform.position += Vector3.up * 0.05f;
+                transform.position += Vector3.up * Time.deltaTime * closeSpeed;
             }
         }
         
