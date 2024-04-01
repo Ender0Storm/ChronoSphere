@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public Vector2 adjustAimPosition = Vector2.zero;
     private bool isBall= false;
     public GameObject gameOverMenuUI;
+    public GameObject pauseMenuUI;
     //Curseur menu pause
     private Texture2D previousCursorTexture;
     private Vector2 previousCursorHotspot;
@@ -92,9 +93,10 @@ public class GameManager : MonoBehaviour
         //Met le curseur windows par defaut
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         Cursor.visible = true;
-
-        gameOverMenuUI.SetActive(true);
+        gameIsPaused = true;
+        pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
+        AudioListener.pause = true;
         playerMovementInstance.gameIsPaused = true;
     }
     
@@ -113,8 +115,10 @@ public class GameManager : MonoBehaviour
         }
 
 
-        gameOverMenuUI.SetActive(false);
+        pauseMenuUI.SetActive(false);
+        AudioListener.pause = false;
         Time.timeScale = 1f;
+        gameIsPaused = false;
         playerMovementInstance.gameIsPaused = false;
 
     }
