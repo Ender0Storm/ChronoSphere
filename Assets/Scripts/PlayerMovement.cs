@@ -126,11 +126,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     if (Input.GetButtonDown("Dash") && canDash && !isDashing)
                     {
-                        float moveHorizontal = Input.GetAxis("Horizontal");
-                        float moveVertical = Input.GetAxis("Vertical");
-
-                        Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
-                        StartCoroutine(Dash(movement));
+                        StartCoroutine(Dash());
                     }
                     else if (Input.GetButtonDown("Jump") && isOnFloor)
                     {
@@ -265,15 +261,27 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     
-    IEnumerator Dash(Vector3 direction)
+    IEnumerator Dash()
     {
         isDashing = true;
         canDash = false;
-        rb.AddTorque(Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y + 90, 0) * (direction * speedBallMode), ForceMode.Impulse);
+
+        // Utilisez les axes d'entrée pour déterminer la direction
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
+        Vector3 direction = new Vector3(moveHorizontal, 0, moveVertical).normalized;
+
+        // Ajustez la direction en fonction de la rotation de la caméra
+        Quaternion cameraAdjustment = Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y, 0);
+        direction = cameraAdjustment * direction;
+
+        // Appliquez la force de dash dans la direction déterminée
         rb.AddForce(direction * dashSpeed, ForceMode.Impulse);
+
         yield return new WaitForSeconds(dashDuration);
         isDashing = false;
-        //Ajout d'un délais avant de pouvoir recommencer le dash
+
+        // Ajoutez un délai avant de pouvoir recommencer le dash
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
     }
