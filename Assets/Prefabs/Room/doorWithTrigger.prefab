@@ -187,11 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da53e71cd94abd14d96cec7e8ba9b6ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOpen: 0
-  _doorPosClose: {x: 0, y: 0, z: 0}
-  _doorPosOpen: {x: 0, y: 0, z: 0}
-  _isMoving: 0
-  instance: {fileID: 0}
+  closeSpeed: 2
 --- !u!114 &4939474328777030675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,11 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030782fcab4d88b48a916707a7609915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOpen: 0
-  _doorPosClose: {x: 0, y: 0, z: 0}
-  _doorPosOpen: {x: 0, y: 0, z: 0}
-  _isMoving: 0
-  instance: {fileID: 0}
+  openSpeed: 2
 --- !u!1 &5999234664945462614
 GameObject:
   m_ObjectHideFlags: 0

@@ -65,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
     private bool canDash;
     public bool canMove = true;
     public bool gameIsPaused;
+    private float jumpTimer;
 
 
 
@@ -80,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
         isBallMode = false;
         canDash = true;
         gameIsPaused = false;
+        jumpTimer = 0.1f;
     }
 
     void FixedUpdate()
@@ -114,6 +116,7 @@ public class PlayerMovement : MonoBehaviour
     
     void Update()
     {
+        if (jumpTimer < 0.1f) jumpTimer += Time.deltaTime;
 
         if (canMove)
         {
@@ -132,6 +135,7 @@ public class PlayerMovement : MonoBehaviour
                     {
                         rb.velocity += Vector3.up * jumpForce;
                         isOnFloor = false;
+                        jumpTimer = 0;
                     }
 
                     if (GetComponent<Rigidbody>().velocity.magnitude > 2f && isOnFloor)
@@ -381,9 +385,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Floor")) 
         {
-            isOnFloor = true;
+            if (jumpTimer >= 0.1f)
+            {
+                isOnFloor = true;
+            }
         }
-    
         else if (other.gameObject.CompareTag("BoostPad") && isBallMode)
         {
             isDashing = true;
@@ -397,7 +403,6 @@ public class PlayerMovement : MonoBehaviour
             yield return new WaitForSeconds(dashCooldown);
             canDash = true;
         }
-
         else
         {
             isOnFloor = false;
