@@ -107,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 MovePlayerShootMode();
-                RotateAtCursor(); 
+                RotateAtCursor();
             }
         }
     }
@@ -142,9 +142,7 @@ public class PlayerMovement : MonoBehaviour
                     {
                         if (!rollingSound.isPlaying)
                         {
-                            
                             rollingSound.Play();
-
                         }
                     }
                     else

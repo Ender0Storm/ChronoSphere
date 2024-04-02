@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
     private bool isBall= false;
     public GameObject gameOverMenuUI;
     public GameObject pauseMenuUI;
+    public GameObject endDemoMenuUI;
     //Curseur menu pause
     private Texture2D previousCursorTexture;
     private Vector2 previousCursorHotspot;
@@ -41,6 +43,7 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
         Cursor.SetCursor(cursorTexture, adjustAimPosition, CursorMode.Auto);
         respawnPoint = playerInSpaceWorld.transform.position;
+        
     }
 
 
@@ -155,6 +158,23 @@ public class GameManager : MonoBehaviour
         playerHealthInstance.SetRendererEnabled(false);
         yield return new WaitForSeconds(0.1f);
         playerHealthInstance.SetRendererEnabled(true);
+    }
+
+    public void EndDemo()
+    {
+        //Retiens l'état du curseur en jeu
+        previousCursorTexture = Cursor.visible ? cursorTexture : null;
+        previousCursorHotspot = Cursor.visible ? adjustAimPosition : Vector2.zero;
+        previousCursorMode = Cursor.visible ? CursorMode.Auto : CursorMode.ForceSoftware;
+
+        //Met le curseur windows par defaut
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        Cursor.visible = true;
+        gameIsPaused = true;
+        AudioListener.pause = true;
+        playerMovementInstance.gameIsPaused = true;
+        endDemoMenuUI.SetActive(true);
+
     }
     
 }

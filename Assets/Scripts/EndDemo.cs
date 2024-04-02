@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EndDemo : MonoBehaviour
 {
+    [SerializeField]
+    private GameManager gameManagerInstance;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +16,13 @@ public class EndDemo : MonoBehaviour
     void Update()
     {
         
+    }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            gameManagerInstance.EndDemo();
+        }
     }
 }
