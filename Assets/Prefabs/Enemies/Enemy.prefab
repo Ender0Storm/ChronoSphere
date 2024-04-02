@@ -449,10 +449,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55fb90421e2898441a82732c9a49d0b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 5
   minSpeedForDamage: 25
   isDead: 0
-  damageCollision: 8
+  damageCollision: 4
   damageProjectile: 1
   hitSound: {fileID: 4257666659279348484}
   head: {fileID: 4800916053066476576}
