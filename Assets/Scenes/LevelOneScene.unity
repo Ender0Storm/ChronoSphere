@@ -8103,7 +8103,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 5fb33e6cca2d1404193cc214aee5c6c2, type: 2}
     - target: {fileID: 6484359673795391313, guid: b7643e42627571141a95b58e74e40867, type: 3}
       propertyPath: jumpPadForce
-      value: 150
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 6484359673795391313, guid: b7643e42627571141a95b58e74e40867, type: 3}
       propertyPath: jumpPadBounceRatio
@@ -8119,15 +8119,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8150471302992905290, guid: b7643e42627571141a95b58e74e40867, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 33.1227
+      value: 33.1
       objectReference: {fileID: 0}
     - target: {fileID: 8150471302992905290, guid: b7643e42627571141a95b58e74e40867, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 8150471302992905290, guid: b7643e42627571141a95b58e74e40867, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15.5323
+      value: -13.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11402,6 +11402,10 @@ PrefabInstance:
     - target: {fileID: 4700500137848425926, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
       propertyPath: JumpPadForce
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4700500137848425926, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
+      propertyPath: dashCooldown
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4700500137848425926, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
       propertyPath: dashDuration

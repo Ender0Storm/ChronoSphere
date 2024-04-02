@@ -301,7 +301,7 @@ MonoBehaviour:
   dashDuration: 0.2
   boostDuration: 3
   jumpAble: 0.2
-  dashCooldown: 1
+  dashCooldown: 0.5
   startSpeed: 10
   jumpForce: 15
   speedBoost: 40
@@ -320,7 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd7852741ecae745a0398026cfbd23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 4
+  maxHealth: 6
   damageProjectile: 1
   explosionPrefab: {fileID: 7675533676084399651}
   sparksPrefab: {fileID: 6833208716292681093}
