@@ -297,9 +297,9 @@ MonoBehaviour:
   speedBallMode: 10
   maxSpeed: 20
   decelerationRate: 1
-  dashSpeed: 140
+  dashSpeed: 150
   dashDuration: 0.2
-  boostDuration: 1
+  boostDuration: 3
   jumpAble: 0.2
   dashCooldown: 1
   startSpeed: 10
@@ -320,7 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd7852741ecae745a0398026cfbd23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1
+  maxHealth: 4
   damageProjectile: 1
   explosionPrefab: {fileID: 7675533676084399651}
   sparksPrefab: {fileID: 6833208716292681093}
@@ -772,7 +772,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4d8416eb341c541498dc968f56d54667, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1028,7 +1028,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0adf76b7ac25de74eb3a58f814a5a75f, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.3
+  m_Volume: 0.1
   m_Pitch: 0.5
   Loop: 1
   Mute: 0

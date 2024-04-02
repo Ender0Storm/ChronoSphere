@@ -1576,6 +1576,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7065086119358836692, guid: 6779ac956bbce534b9b270775c3d3fb5, type: 3}
+      propertyPath: playerMovementScript
+      value: 
+      objectReference: {fileID: 1187902437}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3202,6 +3206,10 @@ PrefabInstance:
     - target: {fileID: 3953866139535600825, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
       propertyPath: m_Volume
       value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4700500137848425926, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
+      propertyPath: dashSpeed
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4700500137848425926, guid: e6ad2d136bfb0834da1c27b018e4c919, type: 3}
       propertyPath: shotDelay
