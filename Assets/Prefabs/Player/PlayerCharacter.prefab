@@ -298,7 +298,7 @@ MonoBehaviour:
   maxSpeed: 20
   decelerationRate: 1
   dashSpeed: 150
-  dashDuration: 0.2
+  dashDuration: 1
   boostDuration: 3
   jumpAble: 0.2
   dashCooldown: 0.5

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
@@ -179,5 +180,11 @@ public class EnemyAI : MonoBehaviour
         navigationAgent.SetDestination(transform.position);
         currentPatrolPoint = 0;
         patrolRoute = route;
+    }
+
+    // Make patrol routes visible when selected
+    private void OnDrawGizmosSelected() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLineStrip(patrolRoute.ToArray().Select(transform => transform.position).ToArray(), true);
     }
 }
