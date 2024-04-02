@@ -331,8 +331,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7145ec3d53058f74e9eba230c89a8734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 12
-  untargetRange: 15
+  detectionRange: 20
+  untargetRange: 25
   untargetDelay: 8
   turnSpeed: 5
   shootRate: 1.5
@@ -449,9 +449,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55fb90421e2898441a82732c9a49d0b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
-  minSpeedForDamage: 40
-  damageCollision: 6
+  maxHealth: 10
+  minSpeedForDamage: 25
+  isDead: 0
+  damageCollision: 8
   damageProjectile: 1
   hitSound: {fileID: 4257666659279348484}
   head: {fileID: 4800916053066476576}
