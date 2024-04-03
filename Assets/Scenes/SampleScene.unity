@@ -932,7 +932,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "D\xE9placement : WASD\nTranformation : F\nDash (en forme sph\xE9rique)
+  m_text: "D\xE9placement : WASD\nTransformation : F\nDash (en forme sph\xE9rique)
     : Shift Gauche\nSauter (en forme sph\xE9rique) : Espace\nTirer (en mode tripode)
     : Clique Gauche\nAfficher menu pause : ESC"
   m_isRightToLeft: 0
