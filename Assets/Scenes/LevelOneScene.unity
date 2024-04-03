@@ -12974,7 +12974,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "D\xE9placement : WASD\nTranformation : F\nDash (en forme sph\xE9rique)
-    : Shift Droit\nSauter (en forme sph\xE9rique) : Espace\nTirer (en mode tripode)
+    : Shift Gauche\nSauter (en forme sph\xE9rique) : Espace\nTirer (en mode tripode)
     : Clique Gauche\nAfficher menu pause : ESC"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
