@@ -63,7 +63,8 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                Cursor.visible = false;
+                //Permet d'enlever le curseur quand on est en mode boule
+                //Cursor.visible = false;
             }
         }
         
@@ -106,8 +107,11 @@ public class GameManager : MonoBehaviour
     public void Resume ()
     {
         
-        if (isBall)
+        //Ancien code pour enlever le curseur quand on est en mode boule et reviens de pause
+        /*
+         *         if (isBall)
         {
+            //Permet d'enlever le curseur quand on est en mode boule
             Cursor.visible = false;
         }
         else
@@ -116,7 +120,10 @@ public class GameManager : MonoBehaviour
             Cursor.visible = previousCursorTexture != null;
             
         }
+         */
 
+        Cursor.SetCursor(previousCursorTexture, previousCursorHotspot, previousCursorMode);
+        Cursor.visible = previousCursorTexture != null;
 
         pauseMenuUI.SetActive(false);
         AudioListener.pause = false;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1815468, g: 0.22718751, b: 0.307406, a: 1}
+  m_IndirectSpecularColor: {r: 0.18154684, g: 0.22718754, b: 0.30740598, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3998,6 +3998,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 157984429784676965, guid: a45a3a455c2149741ac038819d2e7f11, type: 3}
+      propertyPath: m_TagString
+      value: Pipe
+      objectReference: {fileID: 0}
+    - target: {fileID: 157984429784676965, guid: a45a3a455c2149741ac038819d2e7f11, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -4011,7 +4015,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4680245512084797178, guid: a45a3a455c2149741ac038819d2e7f11, type: 3}
       propertyPath: m_TagString
-      value: Floor
+      value: Pipe
       objectReference: {fileID: 0}
     - target: {fileID: 4680245512084797178, guid: a45a3a455c2149741ac038819d2e7f11, type: 3}
       propertyPath: m_StaticEditorFlags
