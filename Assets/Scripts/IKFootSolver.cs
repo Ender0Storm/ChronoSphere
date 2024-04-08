@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class IKFootSolver : MonoBehaviour
 {
@@ -8,6 +10,8 @@ public class IKFootSolver : MonoBehaviour
     private Transform ikBoneTransform;
     [SerializeField]
     private Rigidbody referenceRB;
+    [SerializeField]
+    private ChainIKConstraint ikConstraint;
     [SerializeField]
     private List<IKFootSolver> otherLegsScripts;
 
@@ -36,6 +40,7 @@ public class IKFootSolver : MonoBehaviour
     private Vector3 currentPosition;
     private Vector3 oldPosition;
     private Vector3 newPosition;
+    private float baseWeight;
     
     private float lerp;
 
@@ -44,6 +49,7 @@ public class IKFootSolver : MonoBehaviour
     {
         targetPosition = ikBoneTransform.position + (Vector3.right * startOffset * maxDistanceBeforeMove);
         lerp = 1;
+        baseWeight = 1;
     }
 
     // Update is called once per frame
@@ -54,8 +60,6 @@ public class IKFootSolver : MonoBehaviour
         {
             lerp = 0;
             oldPosition = newPosition;
-
-            // TODO: also consider angular velocity into movement calculation
 
             Vector3 direction = referenceRB.velocity.sqrMagnitude > 0 ? referenceRB.velocity.normalized : (ikBoneTransform.position - targetPosition).normalized;
             targetPosition = direction * distanceToMove + ikBoneTransform.position;
@@ -78,7 +82,7 @@ public class IKFootSolver : MonoBehaviour
             footPosition.y += Mathf.Sin(lerp * Mathf.PI) * walkHeight;
 
             currentPosition = footPosition;
-            lerp += Time.deltaTime * walkSpeed * (referenceRB.velocity.magnitude + 4*referenceRB.angularVelocity.magnitude);
+            lerp += Time.deltaTime * walkSpeed * (referenceRB.velocity.magnitude + 6*referenceRB.angularVelocity.magnitude);
         }
         else
         {
@@ -86,6 +90,12 @@ public class IKFootSolver : MonoBehaviour
         }
 
         transform.position = currentPosition;
+
+        float distanceFromIk = Vector3.Distance(currentPosition, ikBoneTransform.position);
+        float clampedValue = Mathf.Clamp(distanceFromIk, distanceToMove, 2*distanceToMove);
+        float relativeValue = (clampedValue - distanceToMove) / distanceToMove;
+        float weightAdjustment = 1 - relativeValue;
+        ikConstraint.weight = baseWeight * weightAdjustment;
     }
 
     private bool CanWalk()
@@ -101,5 +111,10 @@ public class IKFootSolver : MonoBehaviour
     public bool Walking()
     {
         return lerp < 1;
+    }
+
+    public void SetBaseWeight(float newWeight)
+    {
+        baseWeight = newWeight;
     }
 }

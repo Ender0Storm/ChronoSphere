@@ -273,10 +273,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAnimator: {fileID: 8223920657756890926}
-  legConstraints:
-  - {fileID: 835261133822977111}
-  - {fileID: 1386938360933224106}
-  - {fileID: 1049376737547186435}
+  footSolvers:
+  - {fileID: 8869806985205308689}
+  - {fileID: 1806259448260822490}
+  - {fileID: 1439004286702832375}
   transformSpeed: 5
   isOnFloor: 0
   walkingSound: {fileID: 9093119626390714101}
@@ -643,6 +643,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ikBoneTransform: {fileID: 5303646365130383367}
   referenceRB: {fileID: 225541124557420055}
+  ikConstraint: {fileID: 1049376737547186435}
   otherLegsScripts:
   - {fileID: 8869806985205308689}
   - {fileID: 1806259448260822490}
@@ -1158,6 +1159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ikBoneTransform: {fileID: 8481701633144076279}
   referenceRB: {fileID: 225541124557420055}
+  ikConstraint: {fileID: 1386938360933224106}
   otherLegsScripts:
   - {fileID: 8869806985205308689}
   - {fileID: 1439004286702832375}
@@ -1344,6 +1346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ikBoneTransform: {fileID: 8417519468494612272}
   referenceRB: {fileID: 225541124557420055}
+  ikConstraint: {fileID: 835261133822977111}
   otherLegsScripts:
   - {fileID: 1806259448260822490}
   - {fileID: 1439004286702832375}

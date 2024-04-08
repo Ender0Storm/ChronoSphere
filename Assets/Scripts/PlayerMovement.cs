@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("General Information")]
     public Animator playerAnimator;
-    public List<ChainIKConstraint> legConstraints;
+    public List<IKFootSolver> footSolvers;
     [Min(0.1f)]
     public float transformSpeed;
     public bool isOnFloor;
@@ -310,9 +310,9 @@ public class PlayerMovement : MonoBehaviour
         {
             transformingLerp += Time.fixedDeltaTime * transformSpeed;
 
-            foreach (ChainIKConstraint constraint in legConstraints)
+            foreach (IKFootSolver footSolver in footSolvers)
             {
-                constraint.weight = isBallMode ? transformingLerp : 1 - transformingLerp;
+                footSolver.SetBaseWeight(isBallMode ? transformingLerp : 1 - transformingLerp);
             }
 
             if (isBallMode)
@@ -324,9 +324,9 @@ public class PlayerMovement : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
 
-        foreach (ChainIKConstraint constraint in legConstraints)
+        foreach (IKFootSolver footSolver in footSolvers)
         {
-            constraint.weight = isBallMode ? 1 : 0;
+            footSolver.SetBaseWeight(isBallMode ? 1 : 0);
         }
 
         if (isBallMode)
