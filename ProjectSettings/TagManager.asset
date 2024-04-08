@@ -9,6 +9,7 @@ TagManager:
   - BoostPad
   - Enemy
   - GameData
+  - Pipe
   layers:
   - Default
   - TransparentFX
