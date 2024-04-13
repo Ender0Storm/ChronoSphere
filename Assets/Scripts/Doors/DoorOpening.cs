@@ -33,7 +33,6 @@ public class DoorOpening : MonoBehaviour
                 transform.position += Vector3.down * Time.deltaTime * openSpeed;
             }
         }
-        
         else
         {
             if (transform.position.y < _doorPosClose.y)
@@ -60,6 +59,12 @@ public class DoorOpening : MonoBehaviour
             _isMoving = true;
             isOpen = true;
         }
+    }
+
+    public void OpenWithoutAnimation()
+    {
+        transform.position = new Vector3(transform.position.x, _doorPosOpen.y, transform.position.z);
+        isOpen = true;
     }
 
     public void CloseDoor()
