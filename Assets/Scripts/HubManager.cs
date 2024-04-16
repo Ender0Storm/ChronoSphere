@@ -18,7 +18,13 @@ public class HubManager : MonoBehaviour
     void GetGameData()
     {
         gameData = GameData.gameDataInstance;
-        GameObject door = levelDoors[gameData.GetCurrentLevel()];
-        door.GetComponent<DoorOpening>().OpenDoor();
+        int currentLevel = gameData.GetCurrentLevel();
+        DoorOpening door = levelDoors[currentLevel].GetComponent<DoorOpening>();
+        door.OpenDoor();
+        for (int i = currentLevel - 1; i >= 0; i--)
+        {
+            DoorOpening doorI = levelDoors[i].GetComponent<DoorOpening>();
+            doorI.OpenWithoutAnimation();
+        }
     }
 }
