@@ -239,8 +239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b5acf63f501b7643a2b369eab13486c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpPadForce: 15
-  jumpPadBounceRatio: 1
+  jumpPadForce: 120
+  jumpPadBounceRatio: 0.25
 --- !u!4 &3196282934359209910 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f6789dc20810a0346b6c46b8f0621ae5, type: 3}

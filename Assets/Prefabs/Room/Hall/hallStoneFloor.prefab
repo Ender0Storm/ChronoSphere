@@ -52,6 +52,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: hallStoneFloor
       objectReference: {fileID: 0}
+    - target: {fileID: 5661801410605564897, guid: c0674e088083a824eabe30ffeaa8212f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5661801410605564897, guid: c0674e088083a824eabe30ffeaa8212f, type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
