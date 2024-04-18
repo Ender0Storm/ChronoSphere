@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4712348042051116227}
   m_Layer: 0
-  m_Name: Shroom
+  m_Name: Shroom1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
