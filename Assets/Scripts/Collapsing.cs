@@ -81,8 +81,8 @@ public class Collapsing : MonoBehaviour
          Sans ça, étant donné que le collider est désactivé, le OnCollisionExit du script
          de mouvement ne s'active pas.
          */
-        gameObject.tag = "Untagged";
         yield return StartCoroutine(Flashing());
+        gameObject.tag = "Untagged";
         GavityEnabled();
         boxCollider.enabled = false;
         yield return new WaitForSeconds(2);
