@@ -337,7 +337,7 @@ MonoBehaviour:
   turnSpeed: 5
   shootRate: 1.5
   patrolRoute: []
-  pauseTime: 5
+  pauseTime: 0.75
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
