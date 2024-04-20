@@ -85,16 +85,67 @@ PrefabInstance:
       propertyPath: m_Name
       value: shroomTop5
       objectReference: {fileID: 0}
+    - target: {fileID: 5078774355255221762, guid: fc3d40dc61ccac34d9a55f9c90f0aa8c, type: 3}
+      propertyPath: m_TagString
+      value: JumpPad
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5078774355255221762, guid: fc3d40dc61ccac34d9a55f9c90f0aa8c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7129687263306494874}
+    - targetCorrespondingSourceObject: {fileID: 5078774355255221762, guid: fc3d40dc61ccac34d9a55f9c90f0aa8c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5842654152120715646}
   m_SourcePrefab: {fileID: 100100000, guid: fc3d40dc61ccac34d9a55f9c90f0aa8c, type: 3}
 --- !u!4 &784093265975966059 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fc3d40dc61ccac34d9a55f9c90f0aa8c, type: 3}
   m_PrefabInstance: {fileID: 966886158841192064}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5408963377393385602 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5078774355255221762, guid: fc3d40dc61ccac34d9a55f9c90f0aa8c, type: 3}
+  m_PrefabInstance: {fileID: 966886158841192064}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &7129687263306494874
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5408963377393385602}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5389422280812290950, guid: fc3d40dc61ccac34d9a55f9c90f0aa8c, type: 3}
+--- !u!114 &5842654152120715646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5408963377393385602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b5acf63f501b7643a2b369eab13486c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpPadForce: 140
+  jumpPadBounceRatio: 0.25
 --- !u!1001 &4315270773939372009
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -143,6 +194,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -361637968437296527, guid: 8bbe74c7bc22c024b85c0511fee3c2ac, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8bbe74c7bc22c024b85c0511fee3c2ac, type: 3}
       propertyPath: m_Name
       value: shroomBot5
@@ -150,10 +205,40 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -361637968437296527, guid: 8bbe74c7bc22c024b85c0511fee3c2ac, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6757819288283010971}
   m_SourcePrefab: {fileID: 100100000, guid: 8bbe74c7bc22c024b85c0511fee3c2ac, type: 3}
 --- !u!4 &4352819864067020802 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8bbe74c7bc22c024b85c0511fee3c2ac, type: 3}
   m_PrefabInstance: {fileID: 4315270773939372009}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4691026540665224600 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -361637968437296527, guid: 8bbe74c7bc22c024b85c0511fee3c2ac, type: 3}
+  m_PrefabInstance: {fileID: 4315270773939372009}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &6757819288283010971
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4691026540665224600}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2598963645772953401, guid: 8bbe74c7bc22c024b85c0511fee3c2ac, type: 3}

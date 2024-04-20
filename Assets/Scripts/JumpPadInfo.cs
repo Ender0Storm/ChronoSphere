@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class JumpPadInfo : MonoBehaviour
 {
-    public float jumpPadForce;
-    public float jumpPadBounceRatio;
+    public float jumpPadForce = 140;
+    public float jumpPadBounceRatio = 0.25f;
 }
