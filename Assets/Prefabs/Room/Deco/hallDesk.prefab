@@ -51,7 +51,7 @@ PrefabInstance:
     - target: {fileID: 516968290962813195, guid: cba7a914f6a49b94687e022eb6a977e4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: ae3909ed2b634354c979fa5dcb494fdb, type: 2}
+      objectReference: {fileID: 2100000, guid: 5f007005146d23d4995315aee164ab80, type: 2}
     - target: {fileID: 919132149155446097, guid: cba7a914f6a49b94687e022eb6a977e4, type: 3}
       propertyPath: m_Name
       value: hallDesk

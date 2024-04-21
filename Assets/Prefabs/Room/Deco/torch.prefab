@@ -45,7 +45,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.99215686, g: 0.7529412, b: 0.44313726, a: 1}
-  m_Intensity: 200
+  m_Intensity: 75
   m_Range: 40
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -166,6 +166,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1189727822449554115, guid: 34a2385e9556f174f87f7e719a9460d8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7afe87c7faf67d747be360df599e85ce, type: 2}
     - target: {fileID: 919132149155446097, guid: 34a2385e9556f174f87f7e719a9460d8, type: 3}
       propertyPath: m_Name
       value: torch
