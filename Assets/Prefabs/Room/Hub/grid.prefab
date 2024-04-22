@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: grid
       objectReference: {fileID: 0}
+    - target: {fileID: 3006404736081946037, guid: 7b7db57713e8232409d18dd3cc0000db, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e663e37acd436d74db90cab9ad31b814, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

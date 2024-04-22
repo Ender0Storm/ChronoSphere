@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: crownGems 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1693943441105173382, guid: c73a4d4bc7b04b34c9c5e912192fdb1e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2c9b66022cda11c48862849481a19764, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

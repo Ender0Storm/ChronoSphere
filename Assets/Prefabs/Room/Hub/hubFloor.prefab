@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: hubFloor
       objectReference: {fileID: 0}
+    - target: {fileID: 5147164019418243578, guid: 4b9ee500a9380fe4393711614e03bc82, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cd6ad0cda1170d349bd9531dc897a252, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

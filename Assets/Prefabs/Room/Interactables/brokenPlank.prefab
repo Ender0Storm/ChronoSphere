@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Floor
       objectReference: {fileID: 0}
+    - target: {fileID: -2768136362196475149, guid: ac94a0da2396094408f84da03226e68f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ed325b5a7845b6e4faadaad29e059bfb, type: 2}
     - target: {fileID: 919132149155446097, guid: ac94a0da2396094408f84da03226e68f, type: 3}
       propertyPath: m_Name
       value: brokenPlank

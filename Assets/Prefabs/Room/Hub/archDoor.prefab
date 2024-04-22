@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: -1183169902541298977, guid: adf9f83a06288ef4c8124d47f8bbad5f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5ee83abeca77a57469e688e494a2a899, type: 2}
     - target: {fileID: 919132149155446097, guid: adf9f83a06288ef4c8124d47f8bbad5f, type: 3}
       propertyPath: m_Name
       value: archDoor

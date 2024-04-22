@@ -101,6 +101,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5221288821659719376, guid: 0a65afa03420b9749bf0a589a328eace, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ed325b5a7845b6e4faadaad29e059bfb, type: 2}
     - target: {fileID: 919132149155446097, guid: 0a65afa03420b9749bf0a589a328eace, type: 3}
       propertyPath: m_Name
       value: ladder

@@ -83,6 +83,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -224203205339109032, guid: 7d405c9742007dd478e7a8f308f79bb1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cbdb976ce0de0a945b5925b8dd9cac39, type: 2}
     - target: {fileID: 919132149155446097, guid: 7d405c9742007dd478e7a8f308f79bb1, type: 3}
       propertyPath: m_Name
       value: bedPillow
@@ -195,6 +199,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 5316570468166746566, guid: d7375800a673de04f96f8b6b16521014, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 222e56dcc2661f94d8c617b9415d647c, type: 2}
     - target: {fileID: 8117012418608300827, guid: d7375800a673de04f96f8b6b16521014, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -291,6 +299,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6328983083774747023, guid: f25f92020763fc147a0f19409b764e45, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ed0a766e434f71045a101aee59029bf6, type: 2}
     - target: {fileID: -2451382935910376735, guid: f25f92020763fc147a0f19409b764e45, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -411,6 +423,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Floor
       objectReference: {fileID: 0}
+    - target: {fileID: 4033949587133621431, guid: 0f49e9cd1aa8bd84c85e9a3fa0e78544, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cbdb976ce0de0a945b5925b8dd9cac39, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
