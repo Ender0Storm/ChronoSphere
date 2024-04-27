@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3197132290794308634, guid: 657abb9637d938746adc2460a10d2545, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 222e56dcc2661f94d8c617b9415d647c, type: 2}
     - target: {fileID: 919132149155446097, guid: 657abb9637d938746adc2460a10d2545, type: 3}
       propertyPath: m_Name
       value: frontPipe

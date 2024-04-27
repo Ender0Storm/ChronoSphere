@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6141760007811690210, guid: ae56cf3f037193d4ca1f2a4959a4ebab, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ed0a766e434f71045a101aee59029bf6, type: 2}
     - target: {fileID: 919132149155446097, guid: ae56cf3f037193d4ca1f2a4959a4ebab, type: 3}
       propertyPath: m_Name
       value: throneFlags

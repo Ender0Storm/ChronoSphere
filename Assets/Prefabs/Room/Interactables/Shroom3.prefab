@@ -81,6 +81,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2921869590164159879, guid: e1e88e910bc08ea4ead8dd91eb79cc3b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2c4fb68d996f5c9488446b29488945dd, type: 2}
     - target: {fileID: -1495535631143227361, guid: e1e88e910bc08ea4ead8dd91eb79cc3b, type: 3}
       propertyPath: m_TagString
       value: JumpPad
@@ -194,6 +198,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3044113395946550689, guid: 1a05d72d95992244daa111b22fb39572, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9942648d99dbde748bfb80ad3a5e727f, type: 2}
     - target: {fileID: 919132149155446097, guid: 1a05d72d95992244daa111b22fb39572, type: 3}
       propertyPath: m_Name
       value: shroomBot3

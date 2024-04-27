@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3014967923297796563, guid: 579a4e7bc898a2940b98a9ac81d930b8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 222e56dcc2661f94d8c617b9415d647c, type: 2}
     - target: {fileID: 919132149155446097, guid: 579a4e7bc898a2940b98a9ac81d930b8, type: 3}
       propertyPath: m_Name
       value: lantern

@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Floor
       objectReference: {fileID: 0}
+    - target: {fileID: 8771247687437677, guid: fd297be415db2354aab17502cb5438d9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2c00c6662b109764eaf7f9bd57e54fe7, type: 2}
     - target: {fileID: 919132149155446097, guid: fd297be415db2354aab17502cb5438d9, type: 3}
       propertyPath: m_Name
       value: firstCorridorFloor

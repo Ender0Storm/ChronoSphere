@@ -169,7 +169,7 @@ PrefabInstance:
     - target: {fileID: -1189727822449554115, guid: 34a2385e9556f174f87f7e719a9460d8, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 7afe87c7faf67d747be360df599e85ce, type: 2}
+      objectReference: {fileID: 2100000, guid: ed325b5a7845b6e4faadaad29e059bfb, type: 2}
     - target: {fileID: 919132149155446097, guid: 34a2385e9556f174f87f7e719a9460d8, type: 3}
       propertyPath: m_Name
       value: torch

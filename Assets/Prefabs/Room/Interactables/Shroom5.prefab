@@ -81,6 +81,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 271875394540275254, guid: fc3d40dc61ccac34d9a55f9c90f0aa8c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2c4fb68d996f5c9488446b29488945dd, type: 2}
     - target: {fileID: 919132149155446097, guid: fc3d40dc61ccac34d9a55f9c90f0aa8c, type: 3}
       propertyPath: m_Name
       value: shroomTop5
@@ -202,6 +206,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: shroomBot5
       objectReference: {fileID: 0}
+    - target: {fileID: 5781721003214615019, guid: 8bbe74c7bc22c024b85c0511fee3c2ac, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9942648d99dbde748bfb80ad3a5e727f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: benchPrison
       objectReference: {fileID: 0}
+    - target: {fileID: 2008108048917579009, guid: dfaa2ec4cf2522d4e84d5faa31eb1589, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 12047e27d74d34344a2870586342d18a, type: 2}
     - target: {fileID: 8017753974598893167, guid: dfaa2ec4cf2522d4e84d5faa31eb1589, type: 3}
       propertyPath: m_Layer
       value: 3

@@ -85,6 +85,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: shroomTopPrison
       objectReference: {fileID: 0}
+    - target: {fileID: 1723265035702748182, guid: faec242a51a5c21458a256ffa2b0d9ac, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2c4fb68d996f5c9488446b29488945dd, type: 2}
     - target: {fileID: 6398589197103143277, guid: faec242a51a5c21458a256ffa2b0d9ac, type: 3}
       propertyPath: m_TagString
       value: JumpPad
@@ -198,6 +202,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: shroomBasePrison
       objectReference: {fileID: 0}
+    - target: {fileID: 3035310239585333722, guid: 1db1ad7fc2764d24abbca9d5067f72e8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9942648d99dbde748bfb80ad3a5e727f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

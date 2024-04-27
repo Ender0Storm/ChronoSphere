@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
     {
         isBall = playerMovementScript.isBallMode;
         //Permet de changer de mode
-        if (Input.GetKeyDown(KeyCode.F) && !gameIsPaused)
+        if (Input.GetButtonDown("Transform") && !gameIsPaused)
         {
             playerMovementScript.ChangeMode();
 
