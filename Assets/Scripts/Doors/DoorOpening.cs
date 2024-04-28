@@ -8,7 +8,10 @@ public class DoorOpening : MonoBehaviour
 {
     [SerializeField]
     private float openSpeed = 1.0f;
-
+    
+    [SerializeField]
+    private AudioSource doorOpenSound;
+    
     private bool isOpen;
     private Vector3 _doorPosClose;
     private Vector3 _doorPosOpen;
@@ -21,6 +24,8 @@ public class DoorOpening : MonoBehaviour
         _isMoving = false;
         _doorPosClose = transform.position;
         _doorPosOpen = transform.position + transform.localScale.y * Vector3.down;
+        
+        doorOpenSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -58,6 +63,7 @@ public class DoorOpening : MonoBehaviour
         {
             _isMoving = true;
             isOpen = true;
+            doorOpenSound.Play();
         }
     }
 
