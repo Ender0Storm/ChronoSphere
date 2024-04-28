@@ -11,14 +11,22 @@ public class LoadingScene : MonoBehaviour
     private bool changeData;
     [SerializeField]
     private int newLevel;
+    [SerializeField]
+    private float waitTime;
     
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             if (changeData) GameData.gameDataInstance.SetCurrentLevel(newLevel);
-            //Load the next scene
-            SceneManager.LoadScene(sceneToLoad);
+
+            Invoke(nameof(LoadNewScene), waitTime);
         }
+    }
+
+    //Load the next scene
+    private void LoadNewScene()
+    {
+        SceneManager.LoadScene(sceneToLoad);
     }
 }
