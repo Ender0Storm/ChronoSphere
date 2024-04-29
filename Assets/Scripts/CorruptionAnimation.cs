@@ -5,31 +5,33 @@ using UnityEngine;
 public class CorruptionAnimation : MonoBehaviour
 {
     [SerializeField]
-    private List<ParticleSystem> particles;
-    [SerializeField]
-    private List<MeshRenderer> objectMeshes;
-    [SerializeField]
     private float lerpTime;
 
+    private ParticleSystem[] particles;
+    private MeshRenderer[] objectMeshes;
     private float animationLerp = 0;
     private bool triggered = false;
+
+    void Start() {
+        particles = GetComponentsInChildren<ParticleSystem>();
+        objectMeshes = GetComponentsInChildren<MeshRenderer>();
+    }
 
     void Update() {
         if (animationLerp > 0)
         {
             float progress = animationLerp / lerpTime;
-
             foreach (ParticleSystem particle in particles)
             {
                 var psMain = particle.main;
                 var currentColor = psMain.startColor.color;
-
-                psMain.startColor = new Color(currentColor.r, currentColor.g, currentColor.b, progress);
+                var newColor = new Color(currentColor.r, currentColor.g, currentColor.b, progress);
+                psMain.startColor = new ParticleSystem.MinMaxGradient(newColor);
             }
 
             foreach (MeshRenderer mesh in objectMeshes)
             {
-                mesh.material.SetFloat("ShaderLerp", progress);
+                mesh.material.SetFloat("_ShaderLerp", progress);
             }
 
             animationLerp -= Time.deltaTime;
