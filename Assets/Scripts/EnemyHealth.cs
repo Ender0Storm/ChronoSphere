@@ -54,7 +54,7 @@ public class EnemyHealth : MonoBehaviour
 
     IEnumerator DestroyAfterSound()
     {
-        GetComponentInChildren<Renderer>().enabled = false;
+        //GetComponentInChildren<Renderer>().enabled = false;
         hitSound.Play();
         yield return new WaitForSeconds(hitSound.clip.length);
         Destroy(gameObject);
@@ -73,7 +73,7 @@ public class EnemyHealth : MonoBehaviour
             {
                 headRb = head.AddComponent<Rigidbody>();
             }
-            head.GetComponent<BoxCollider>().enabled = true;
+            head.GetComponent<SphereCollider>().enabled = true;
             head.transform.parent = null;
             headRb.isKinematic = false;
             headRb.mass = 0.5f;
