@@ -5422,6 +5422,7 @@ GameObject:
   - component: {fileID: 969376918420237251}
   - component: {fileID: 5497644790296043952}
   - component: {fileID: 6605498754708072037}
+  - component: {fileID: 4011296219692443967}
   m_Layer: 0
   m_Name: gem
   m_TagString: Untagged
@@ -5491,6 +5492,31 @@ MonoBehaviour:
   sceneToLoad: HubScene
   changeData: 1
   newLevel: 1
+  waitTime: 2
+--- !u!114 &4011296219692443967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8380579030238988274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 732b0742c372f974ca3a5918d6aaa813, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particles:
+  - {fileID: 1574738275916504513}
+  objectMeshes:
+  - {fileID: 4560073165732708906}
+  - {fileID: 1944286144294173173}
+  - {fileID: 5945821904219377522}
+  - {fileID: 6695170057455048835}
+  - {fileID: 6832374972525927052}
+  - {fileID: 7374056588029826099}
+  - {fileID: 3393367739177402055}
+  - {fileID: 2015502128617688229}
+  lerpTime: 1
 --- !u!1 &8618819179114677957
 GameObject:
   m_ObjectHideFlags: 0
