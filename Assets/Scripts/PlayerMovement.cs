@@ -19,6 +19,9 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource rollingSound;
     public AudioSource gunSound;
     public AudioSource transformSound;
+    public AudioSource jumpSound;
+    public AudioSource dashSound;
+    public AudioSource jumpPadSound;
     private float minPitch = -1f; 
     private float maxPitch = 1.0f; 
     
@@ -136,6 +139,8 @@ public class PlayerMovement : MonoBehaviour
                         rb.velocity += Vector3.up * jumpForce;
                         isOnFloor = false;
                         jumpTimer = 0;
+                        
+                        jumpSound.Play();
                     }
 
                     if (GetComponent<Rigidbody>().velocity.magnitude > 2f && isOnFloor)
@@ -281,6 +286,8 @@ public class PlayerMovement : MonoBehaviour
 
         // Appliquez la force de dash dans la direction déterminée
         rb.AddForce(direction * dashSpeed, ForceMode.Impulse);
+        
+        dashSound.Play();
 
         yield return new WaitForSeconds(dashDuration);
         isDashing = false;
@@ -375,6 +382,7 @@ public class PlayerMovement : MonoBehaviour
         JumpPadInfo info = other.gameObject.GetComponent<JumpPadInfo>();
         if (info != null && isBallMode)
         {
+            jumpPadSound.Play();
             Vector3 jumpPadNormal = other.GetContact(0).normal;
             Vector3 projectedVelocity = Vector3.Dot(other.relativeVelocity, jumpPadNormal) * jumpPadNormal;
             rb.AddForce(jumpPadNormal * info.jumpPadForce + projectedVelocity * info.jumpPadBounceRatio, ForceMode.Impulse);

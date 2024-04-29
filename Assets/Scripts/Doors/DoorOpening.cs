@@ -24,8 +24,6 @@ public class DoorOpening : MonoBehaviour
         _isMoving = false;
         _doorPosClose = transform.position;
         _doorPosOpen = transform.position + transform.localScale.y * Vector3.down;
-        
-        doorOpenSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -49,6 +47,7 @@ public class DoorOpening : MonoBehaviour
         if (transform.position.y >= _doorPosClose.y || transform.position.y <= _doorPosOpen.y)
         {
             _isMoving = false;
+            doorOpenSound.Stop();
         }
     }
     
@@ -79,6 +78,7 @@ public class DoorOpening : MonoBehaviour
         {
             _isMoving = true;
             isOpen = false;
+            doorOpenSound.Play();
         }
     }
 }

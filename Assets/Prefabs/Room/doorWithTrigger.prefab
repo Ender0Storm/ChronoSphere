@@ -188,6 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   closeSpeed: 2
+  doorCloseSound: {fileID: 0}
 --- !u!114 &4939474328777030675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,6 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openSpeed: 2
+  doorOpenSound: {fileID: 0}
 --- !u!1 &5999234664945462614
 GameObject:
   m_ObjectHideFlags: 0

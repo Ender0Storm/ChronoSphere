@@ -7,6 +7,9 @@ public class DoorClosing : MonoBehaviour
     [SerializeField]
     private float closeSpeed = 1.0f;
 
+    [SerializeField]
+    private AudioSource doorCloseSound;
+    
     private bool isOpen;
     private Vector3 _doorPosClose;
     private Vector3 _doorPosOpen;
@@ -43,6 +46,7 @@ public class DoorClosing : MonoBehaviour
         if (transform.position.y >= _doorPosClose.y || transform.position.y <= _doorPosOpen.y)
         {
             _isMoving = false;
+            doorCloseSound.Stop();
         }
     }
     
@@ -57,6 +61,7 @@ public class DoorClosing : MonoBehaviour
         {
             _isMoving = true;
             isOpen = true;
+            doorCloseSound.Play();
         }
     }
 
@@ -66,6 +71,7 @@ public class DoorClosing : MonoBehaviour
         {
             _isMoving = true;
             isOpen = false;
+            doorCloseSound.Play();
         }
     }
 }
