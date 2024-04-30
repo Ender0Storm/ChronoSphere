@@ -31,7 +31,8 @@ public class TriggerCloseDoor : MonoBehaviour
         {
             doorOpeningInstance.CloseDoor();
             doorClosingInstance.CloseDoor();
-            gameManager.SetRespawnPoint();
         }
+        
+        gameManager.SetRespawnPoint();
     }
 }
