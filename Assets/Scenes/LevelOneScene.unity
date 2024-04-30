@@ -10715,7 +10715,7 @@ GameObject:
   - component: {fileID: 1342446924}
   m_Layer: 0
   m_Name: pipeCollider
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12481,7 +12481,7 @@ GameObject:
   - component: {fileID: 1552648195}
   m_Layer: 0
   m_Name: pipeCollider (1)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13352,7 +13352,7 @@ GameObject:
   - component: {fileID: 1693398260}
   m_Layer: 0
   m_Name: stairCollider (2)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14870,7 +14870,7 @@ GameObject:
   - component: {fileID: 1862610891}
   m_Layer: 0
   m_Name: stairCollider
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14923,7 +14923,7 @@ GameObject:
   - component: {fileID: 1867413923}
   m_Layer: 0
   m_Name: stairCollider (1)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18220,9 +18220,13 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 826448757300862689, guid: fe8201242000bd7438c1a0125b5ab752, type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
     - target: {fileID: 4828599539136508785, guid: fe8201242000bd7438c1a0125b5ab752, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.2
+      value: -0.38
       objectReference: {fileID: 0}
     - target: {fileID: 7433606363517354763, guid: fe8201242000bd7438c1a0125b5ab752, type: 3}
       propertyPath: m_LocalPosition.x
