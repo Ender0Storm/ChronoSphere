@@ -11,6 +11,8 @@ public class HubManager : MonoBehaviour
     private List<GameObject> levelObjectives;
 
     private GameData gameData;
+    
+    public AudioSource finalMusic;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +41,11 @@ public class HubManager : MonoBehaviour
             {
                 renderer.material.SetFloat("_ShaderLerp", 0);
             }
+        }
+        //Démarrer la chanson de fin
+        if(currentLevel == 1)
+        {
+            finalMusic.Play();
         }
     }
 }
