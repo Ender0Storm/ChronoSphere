@@ -41,7 +41,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField]
     private float projectileDuration;
 
-    private GameObject currentTarget;
+    public GameObject currentTarget;
     private int currentPatrolPoint;
     private float shootTimer;
     private float untargetTimer;
