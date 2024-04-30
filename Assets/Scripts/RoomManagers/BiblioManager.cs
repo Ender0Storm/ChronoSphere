@@ -9,6 +9,7 @@ public class BiblioManager : MonoBehaviour
     public GameObject doorTrigger;
     [Header("Music Layer")] public AudioSource musicLayer1;
     public AudioSource musicLayer2;
+    public AudioSource drumRoll;
     public BoxCollider gameZone;
 
     private float initialVolume1;
@@ -43,9 +44,8 @@ public class BiblioManager : MonoBehaviour
 
             if (enemyHealthList.Count == 0)
             {
-                musicLayer1.loop = false;
-                musicLayer2.loop = false;
-                doorTrigger.SetActive(true);
+
+                StartCoroutine(StartFinalAfterDelay());
             }
         }
 
@@ -101,6 +101,16 @@ public class BiblioManager : MonoBehaviour
             audioSource.volume = Mathf.Clamp(audioSource.volume, 0, startVolume);
             yield return null;
         }
+    }
+    IEnumerator StartFinalAfterDelay()
+    {
+        yield return new WaitForSeconds(2);
+        drumRoll.Play();
+        StartCoroutine(FadeOutAudioSource(musicLayer1, 1));
+        StartCoroutine(FadeOutAudioSource(musicLayer2, 1));
+        musicLayer1.Stop();
+        musicLayer2.Stop();
+        doorTrigger.SetActive(true);
     }
 }
 

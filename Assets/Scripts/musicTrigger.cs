@@ -10,8 +10,9 @@ public class musicTrigger : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") )
+        if (other.gameObject.CompareTag("Player") && alreadyTriggered == false)
         {
+            alreadyTriggered = true;
             switch (functionNumber1To4)
             {
                 case 1:

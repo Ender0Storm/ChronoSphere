@@ -177,8 +177,8 @@ public class GameManager : MonoBehaviour
         //Met le curseur windows par defaut
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         Cursor.visible = true;
-        gameIsPaused = true;
-        AudioListener.pause = true;
+        //gameIsPaused = true;
+        //AudioListener.pause = true;
         playerMovementInstance.gameIsPaused = true;
         endDemoMenuUI.SetActive(true);
 
